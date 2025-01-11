@@ -1,38 +1,61 @@
-# sv
+# BoostBNB.io Frontend
+The frontend software that runs BoostBNB.io.
+For the backend, see [backend-software](https://github.com/BoostBNB/backend-software)
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+## Commit Guide
+This codebase uses the [Conventional Commits](https://www.conventionalcommits.org) standard for commits and Pull Requests.
+Note that we do not require the scope parameter (`fix(scope)`), and only require the fix/feat/etc part of the standard.
 
-## Creating a project
 
-If you're seeing this, you've probably already done this step. Congrats!
+- For naming branches, the branch should be called `commit-type/branchname`. (EX: `fix/broken-homepage`)
+- For naming PRs and Commits, the PR/Commit should be titled `commit-type: message`. (EX: `fix: Broken homepage`)
 
-```bash
-# create a new project in the current directory
-npx sv create
+### Conventional Commits Quick Reference
+- **build:** Changes that affect the build system or external dependencies
+- **ci:** Changes that affect our GitHub CI or Issue/PR Templates
+- **docs:** Update or enhance documentation without affecting code behavior
+- **feat:** Introduce new features or functionality
+- **fix:** Address bugs or resolve issues in the codebase
+- **perf:** Implement changes that improve application performance
+- **style:** Changes to code style
+    - Whitespace
+    - Semicolons
+    - Formatting
+    - Trailing commas
+    - Style-only CSS Updates
+        - Nesting
+        - Removing duplicate properties
+        - Bringing related properties closer together
+    - Fixing Typos
+    - Etc
 
-# create a new project in my-app
-npx sv create my-app
+## Style Guide
+This codebase uses [Prettier](https://prettier.io/) for styling.
+Please run prettier (`bun run format`) after changing any code in the codebase to keep everything readable.
+If you forget to run it before commiting your changes,
+you may run prettier and then commit its changes with `git commit -a -m "style: Prettier format"`.
+The prettier rules are viewable in our [.prettierrc](https://github.com/BoostBNB/frontend-software/blob/master/.prettierrc) or below.
+
+### Prettier Configuration
+```json
+{
+  "tabWidth": 2,
+  "printWidth": 150,
+  "useTabs": false,
+  "semi": true,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "bracketSameLine": true,
+  "plugins": [
+    "prettier-plugin-svelte"
+  ],
+  "overrides": [
+    {
+      "files": "*.svelte",
+      "options": {
+        "parser": "svelte"
+      }
+    }
+  ]
+}
 ```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
