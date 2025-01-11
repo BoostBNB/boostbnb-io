@@ -11,7 +11,7 @@ Note that we do not require the scope parameter (`fix(scope)`), and only require
 - For naming PRs and Commits, the PR/Commit should be titled `commit-type: message`. (EX: `fix: Broken homepage`)
 
 ### Conventional Commits Quick Reference
-- **build:** Changes that affect the build system or external dependencies
+- **build:** Changes that affect the build system, git, or external dependencies
 - **ci:** Changes that affect our GitHub CI or Issue/PR Templates
 - **docs:** Update or enhance documentation without affecting code behavior
 - **feat:** Introduce new features or functionality
