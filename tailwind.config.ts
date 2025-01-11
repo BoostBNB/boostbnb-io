@@ -37,7 +37,7 @@ export default {
           secondary: '#fbd0ed',
           accent: '#6981ce',
           neutral: '#262626',
-          'base-100': '#ffffff',
+          'base-100': '#fff0fa',
         },
       },
     ],
