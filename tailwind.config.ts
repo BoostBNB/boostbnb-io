@@ -33,7 +33,7 @@ export default {
     themes: [
       {
         light: {
-          primary: '#d496c1',
+          primary: '#F9A8D4',
           secondary: '#fbd0ed',
           accent: '#6981ce',
           neutral: '#262626',

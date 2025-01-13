@@ -5,7 +5,7 @@
 </script>
 
 <!-- Navbar -->
-<nav class="navbar justify-between bg-base-300">
+<nav class="navbar justify-between fixed top-0 left-0">
   <!-- Logo -->
   <a class="btn btn-ghost text-lg" href="/">
     <img alt="Logo" src="/favicon.png" class="w-8" />
