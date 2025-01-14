@@ -5,7 +5,7 @@
 </script>
 
 <!-- Navbar -->
-<nav class="navbar justify-between fixed top-0 left-0">
+<nav class="navbar fixed left-0 top-0 justify-between">
   <!-- Logo -->
   <a class="btn btn-ghost text-lg" href="/">
     <img alt="Logo" src="/favicon.png" class="w-8" />
@@ -18,17 +18,17 @@
       <i class="fa-solid fa-bars text-lg"></i>
     </button>
 
-    <ul tabindex="-1" class="dropdown-content menu z-[1] bg-base-200 p-6 rounded-box shadow w-56 gap-2">
+    <ul tabindex="-1" class="menu dropdown-content z-[1] w-56 gap-2 rounded-box bg-base-200 p-6 shadow">
       <li><a href={aboutLink}>About</a></li>
       <li><a href={pricingLink}>Pricing</a></li>
-      <li><a href={loginLink} class="btn btn-sm btn-primary">Log in</a></li>
+      <li><a href={loginLink} class="btn btn-primary btn-sm">Log in</a></li>
     </ul>
   </div>
 
   <!-- Menu for desktop -->
-  <ul class="hidden menu sm:menu-horizontal gap-2">
+  <ul class="menu hidden gap-2 sm:menu-horizontal">
     <li><a href={aboutLink}>About</a></li>
     <li><a href={pricingLink}>Pricing</a></li>
-    <li><a class="btn btn-sm btn-primary" href={loginLink}>Log in</a></li>
+    <li><a class="btn btn-primary btn-sm" href={loginLink}>Log in</a></li>
   </ul>
 </nav>
