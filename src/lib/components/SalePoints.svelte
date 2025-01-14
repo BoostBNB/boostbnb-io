@@ -5,22 +5,22 @@
     and increase
     <span class="font-bold text-accent">Revenue</span>
   </h1>
-  <div class="my-4 flex w-full flex-col justify-center gap-4 md:flex-row">
-    <div class="card mx-auto w-11/12 bg-base-200 shadow-xl md:mx-0 md:w-96">
+  <div class="p-4 flex w-full lg:w-9/12 lg:mx-auto flex-col justify-center gap-4 md:flex-row">
+    <div class="card mx-auto bg-base-200 shadow-xl md:mx-0 md:w-auto w-11/12">
       <div class="card-body text-center">
         <img class="h-16" src="/icons/eye_line.svg" alt="mingcute:eye_line" />
         <h2 class="text-xl font-bold">Boost Visibility</h2>
         <p>Increase your visibility and reach a wider audience with our AI based Optimization Service.</p>
       </div>
     </div>
-    <div class="card mx-auto w-11/12 bg-base-200 shadow-xl md:mx-0 md:w-96">
+    <div class="card mx-auto bg-base-200 shadow-xl md:mx-0 md:w-auto w-11/12">
       <div class="card-body text-center">
         <img class="h-16" src="/icons/book_6_line.svg" alt="mingcute:book_6_line" />
         <h2 class="text-xl font-bold">Turn Interest into Bookings</h2>
         <p>Turn potential guests into confirmed bookings with our smart and targeted AI algorithm based techniques.</p>
       </div>
     </div>
-    <div class="card mx-auto w-11/12 bg-base-200 shadow-xl md:mx-0 md:w-96">
+    <div class="card mx-auto bg-base-200 shadow-xl md:mx-0 md:w-auto w-11/12">
       <div class="card-body text-center">
         <img class="h-16" src="/icons/chart_line_line.svg" alt="mingcute:chart_line_line" />
         <h2 class="text-xl font-bold">Stay ahead of market trends</h2>
