@@ -5,7 +5,7 @@
 </script>
 
 <!-- Navbar -->
-<nav class="navbar fixed left-0 top-0 justify-between bg-base-100 z-[100] bg-opacity-30 backdrop-blur-sm">
+<nav class="navbar fixed left-0 top-0 z-[100] justify-between bg-base-100 bg-opacity-30 backdrop-blur-sm">
   <!-- Logo -->
   <a class="btn btn-ghost text-lg" href="/">
     <img alt="Logo" src="/favicon.png" class="w-8" />
