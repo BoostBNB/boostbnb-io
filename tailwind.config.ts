@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import defaultTheme from 'tailwindcss/defaultTheme';
 import daisyui from 'daisyui';
 
 export default {
@@ -17,8 +18,7 @@ export default {
         '5xl': '4.210rem',
       },
       fontFamily: {
-        heading: 'Funnel Sans',
-        body: 'Funnel Sans',
+        sans: ['Funnel Sans', ...defaultTheme.fontFamily.sans],
       },
       fontWeight: {
         normal: '400',
@@ -35,9 +35,11 @@ export default {
         light: {
           primary: '#F9A8D4',
           secondary: '#fbd0ed',
-          accent: '#6981ce',
+          accent: '#081647',
           neutral: '#262626',
-          'base-100': '#fff0fa',
+          'base-100': '#fdf2f8',
+          'base-200': '#fbcfe8',
+          'base-300': '#f9a8d4',
         },
       },
     ],
