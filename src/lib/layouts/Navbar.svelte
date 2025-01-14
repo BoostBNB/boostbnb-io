@@ -1,11 +1,25 @@
 <script lang="ts">
+  import { onMount } from 'svelte';
   const aboutLink: string = '/#about';
   const pricingLink: string = '/#pricing';
   const loginLink: string = '/log-in';
+
+  onMount(() => {
+    addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar')!;
+      if (document.documentElement.scrollTop > 0) {
+        navbar.classList.add('shadow-xl');
+        navbar.classList.add('bg-base-100');
+      } else {
+        navbar.classList.remove('shadow-xl');
+        navbar.classList.remove('bg-base-100');
+      }
+    });
+  });
 </script>
 
 <!-- Navbar -->
-<nav class="navbar fixed left-0 top-0 z-[100] justify-between bg-base-100 bg-opacity-30 backdrop-blur-sm">
+<nav id="navbar" class="navbar fixed left-0 top-0 z-[100] justify-between transition-all duration-300">
   <!-- Logo -->
   <a class="btn btn-ghost text-lg" href="/">
     <img alt="Logo" src="/favicon.png" class="w-8" />
