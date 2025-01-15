@@ -5,7 +5,7 @@ For the backend, see [backend-software](https://github.com/BoostBNB/backend-soft
 
 ## Techstack
 
-<img src="https://go-skill-icons.vercel.app/api/icons?i=daisyui" title="DaisyUI"> <img src="https://go-skill-icons.vercel.app/api/icons?i=svelte" title="SvelteKit"> <img src="https://go-skill-icons.vercel.app/api/icons?i=tailwindcss" title="TailwindCSS"> <img src="https://go-skill-icons.vercel.app/api/icons?i=typescript" title="TypeScript">
+<img src="https://go-skill-icons.vercel.app/api/icons?i=daisyui" title="DaisyUI"> <img src="https://go-skill-icons.vercel.app/api/icons?i=supabase" title="Supabase"> <img src="https://go-skill-icons.vercel.app/api/icons?i=svelte" title="SvelteKit"> <img src="https://go-skill-icons.vercel.app/api/icons?i=tailwindcss" title="TailwindCSS"> <img src="https://go-skill-icons.vercel.app/api/icons?i=typescript" title="TypeScript">
 
 ## Commit Guide
 
