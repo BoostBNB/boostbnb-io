@@ -32,14 +32,12 @@ export default {
   daisyui: {
     themes: [
       {
-        light: {
-          primary: '#F9A8D4',
-          secondary: '#fbd0ed',
-          accent: '#081647',
-          neutral: '#262626',
-          'base-100': '#fdf2f8',
-          'base-200': '#fbcfe8',
-          'base-300': '#f9a8d4',
+        myTheme: {
+          primary: '#3888d4',
+          secondary: '#86bdf1',
+          accent: '#419ff9',
+          neutral: '#132639',
+          'base-100': '#f9fbfd',
         },
       },
     ],
