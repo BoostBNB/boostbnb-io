@@ -1,7 +1,8 @@
-import type { Config } from 'tailwindcss';
-import defaultTheme from 'tailwindcss/defaultTheme';
+// @ts-expect-error code works fine, I just don't like the red line
 import tailwindcssMotion from 'tailwindcss-motion';
+import defaultTheme from 'tailwindcss/defaultTheme';
 import daisyui from 'daisyui';
+import type { Config } from 'tailwindcss';
 
 export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
