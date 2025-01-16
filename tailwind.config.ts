@@ -1,9 +1,11 @@
 import type { Config } from 'tailwindcss';
 import defaultTheme from 'tailwindcss/defaultTheme';
+import tailwindcssMotion from 'tailwindcss-motion';
 import daisyui from 'daisyui';
 
 export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
+  plugins: [daisyui, tailwindcssMotion],
 
   // Tailwind Config
   theme: {
@@ -28,7 +30,6 @@ export default {
   },
 
   // DaisyUI Config
-  plugins: [daisyui],
   daisyui: {
     themes: [
       {

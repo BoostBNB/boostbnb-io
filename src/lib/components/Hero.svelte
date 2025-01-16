@@ -11,15 +11,32 @@
       </div>
     </div>
     <div>
-      <h1 class="text-center text-3xl font-bold lg:text-5xl">Maximize your AirBNB Profits</h1>
-      <p class="py-6 text-center">
+      <h1 class="text-center text-3xl font-bold lg:text-5xl">
+        <span class="motion-preset-blur-up-lg motion-duration-1000 motion-delay-500">Maximize</span>
+        <span class="motion-preset-blur-up-lg motion-duration-1000 motion-delay-600">your</span>
+        <span class="motion-preset-blur-up-lg motion-duration-1000 motion-delay-700">AirBNB</span>
+        <span class="motion-preset-blur-up-lg motion-duration-1000 motion-delay-800">Profits</span>
+      </h1>
+      <p class="motion-preset-blur-up-lg py-6 text-center motion-duration-1000 motion-delay-900">
         Unlock the full potential of your Short Term Rental listings and maximize your bookings with AirBNB's
         <span class="text-[#081647]">#1 rental optimization platform</span>.
       </p>
       <div class="flex w-full justify-center gap-2">
-        <button class="btn btn-primary">Get Started</button>
-        <button class="btn btn-secondary">Learn more</button>
+        <button class="btn btn-primary motion-preset-blur-left motion-duration-1500 motion-delay-1000">Get Started</button>
+        <button class="btn btn-secondary motion-preset-blur-right motion-duration-1500 motion-delay-1000">Learn more</button>
       </div>
     </div>
   </div>
 </div>
+
+<style>
+  .motion-delay-600 {
+    --motion-delay: 600ms;
+  }
+  .motion-delay-800 {
+    --motion-delay: 800ms;
+  }
+  .motion-delay-900 {
+    --motion-delay: 900ms;
+  }
+</style>
