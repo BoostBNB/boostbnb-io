@@ -72,8 +72,8 @@ The prettier rules are viewable in our [.prettierrc](https://github.com/BoostBNB
   "semi": true,
   "singleQuote": true,
   "trailingComma": "all",
-  "bracketSameLine": true,
-  "plugins": ["prettier-plugin-svelte"],
+  "bracketSameLine": false,
+  "plugins": ["prettier-plugin-svelte", "prettier-plugin-tailwindcss"],
   "overrides": [
     {
       "files": "*.svelte",
