@@ -4,7 +4,7 @@
 
 <div class="hero min-h-screen border-b-2 border-primary bg-gradient-to-br from-white to-blue-200 pb-4">
   <div class="hero-content flex-col lg:flex-row">
-    <div class="block w-3/4 scale-[0.85] md:scale-100">
+    <HeroAnimate delay={1200} duration={1500} className="block w-3/4 scale-[0.85] md:scale-100">
       <div class="relative mx-auto h-[172px] max-w-[301px] rounded-t-xl border-[8px] border-zinc-400 bg-zinc-400 md:h-[294px] md:max-w-[512px]">
         <div class="h-[156px] overflow-hidden rounded-lg bg-white md:h-[278px]">
           <img src="/assets/hero-image.png" class="h-[156px] w-full rounded-lg md:h-[278px]" alt="" />
@@ -13,7 +13,7 @@
       <div class="relative mx-auto h-[17px] max-w-[351px] rounded-b-xl rounded-t-sm bg-zinc-500 md:h-[21px] md:max-w-[597px]">
         <div class="absolute left-1/2 top-0 h-[5px] w-[56px] -translate-x-1/2 rounded-b-xl bg-zinc-400 md:h-[8px] md:w-[96px]"></div>
       </div>
-    </div>
+    </HeroAnimate>
     <div>
       <h1 class="text-center text-3xl font-bold lg:text-5xl">
         <HeroAnimate delay={500} duration={1000}>Maximize</HeroAnimate>
