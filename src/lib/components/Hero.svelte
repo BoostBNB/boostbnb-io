@@ -23,10 +23,10 @@
       </p>
       <div class="flex w-full justify-center gap-2">
         <div class="motion-preset-blur-left size-fit motion-duration-1500 motion-delay-1000">
-          <a class="btn btn-primary">Get started</a>
+          <a class="btn btn-primary" href="/#">Get started</a>
         </div>
         <div class="motion-preset-blur-right size-fit motion-duration-1500 motion-delay-1000">
-          <a class="btn btn-secondary">Learn more</a>
+          <a class="btn btn-secondary" href="/#salepoints">Learn more</a>
         </div>
       </div>
     </div>

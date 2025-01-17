@@ -21,7 +21,7 @@
         <Feature>Email Support</Feature>
         <Feature>Analytics Dashboard</Feature>
       </div>
-      <a class="btn btn-neutral absolute bottom-8 left-1/2 z-10 w-56 -translate-x-1/2">Get Basic</a>
+      <a class="btn btn-neutral absolute bottom-8 left-1/2 z-10 w-56 -translate-x-1/2" href="/#">Get Basic</a>
     </div>
 
     <div class="relative flex h-[28rem] flex-col gap-6 rounded-box border-2 border-primary bg-base-100 p-8 shadow-lg">
@@ -39,7 +39,7 @@
         <Feature>Priority Support</Feature>
         <Feature>CoHost AI</Feature>
       </div>
-      <a class="btn btn-primary absolute bottom-8 left-1/2 z-10 w-56 -translate-x-1/2">Get Pro</a>
+      <a class="btn btn-primary absolute bottom-8 left-1/2 z-10 w-56 -translate-x-1/2" href="/#">Get Pro</a>
       <div class="badge badge-primary badge-lg absolute top-[4.25rem] self-center">Most popular</div>
     </div>
 
@@ -55,7 +55,7 @@
         <Feature>Full competitor anylisis</Feature>
         <Feature>Unlimited listings</Feature>
       </div>
-      <a class="btn btn-neutral absolute bottom-8 left-1/2 z-10 w-56 -translate-x-1/2">Get Premium</a>
+      <a class="btn btn-neutral absolute bottom-8 left-1/2 z-10 w-56 -translate-x-1/2" href="/#">Get Premium</a>
     </div>
 
     <div class="relative flex h-[28rem] flex-col gap-6 rounded-box bg-base-100 p-8 shadow-lg">
@@ -67,7 +67,7 @@
         <Feature>Everything in Premium</Feature>
         <Feature>Unlimited listings</Feature>
       </div>
-      <a class="btn btn-neutral absolute bottom-8 left-1/2 z-10 w-56 -translate-x-1/2">Get Enterprise</a>
+      <a class="btn btn-neutral absolute bottom-8 left-1/2 z-10 w-56 -translate-x-1/2" href="/#">Get Enterprise</a>
     </div>
   </div>
 </div>
