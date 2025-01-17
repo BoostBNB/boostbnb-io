@@ -1,3 +1,7 @@
+<script>
+  import HeroAnimate from './Hero_animate.svelte';
+</script>
+
 <div class="hero min-h-screen border-b-2 border-primary bg-gradient-to-br from-white to-blue-200 pb-4">
   <div class="hero-content flex-col lg:flex-row">
     <div class="block w-3/4 scale-[0.85] md:scale-100">
@@ -12,14 +16,16 @@
     </div>
     <div>
       <h1 class="text-center text-3xl font-bold lg:text-5xl">
-        <span class="motion-preset-blur-up-lg motion-duration-1000 motion-delay-500">Maximize</span>
-        <span class="motion-delay-600 motion-preset-blur-up-lg motion-duration-1000">your</span>
-        <span class="motion-preset-blur-up-lg motion-duration-1000 motion-delay-700">AirBNB</span>
-        <span class="motion-delay-800 motion-preset-blur-up-lg motion-duration-1000">Profits</span>
+        <HeroAnimate delay={500} duration={1000}>Maximize</HeroAnimate>
+        <HeroAnimate delay={600} duration={1000}>your</HeroAnimate>
+        <HeroAnimate delay={700} duration={1000}>AirBNB</HeroAnimate>
+        <HeroAnimate delay={800} duration={1000}>Profits</HeroAnimate>
       </h1>
-      <p class="motion-delay-900 motion-preset-blur-up-lg py-6 text-center motion-duration-1000">
-        Unlock the full potential of your Short Term Rental listings and maximize your bookings with AirBNB's
-        <span class="text-[#081647]">#1 rental optimization platform</span>.
+      <p class="py-6 text-center">
+        <HeroAnimate delay={1000} duration={1000}>
+          Unlock the full potential of your Short Term Rental listings and maximize your bookings with AirBNB's
+          <span class="text-[#081647]">#1 rental optimization platform</span>.
+        </HeroAnimate>
       </p>
       <div class="flex w-full justify-center gap-2">
         <div class="motion-preset-blur-left size-fit motion-duration-1500 motion-delay-1000">
@@ -32,15 +38,3 @@
     </div>
   </div>
 </div>
-
-<style>
-  .motion-delay-600 {
-    --motion-delay: 600ms;
-  }
-  .motion-delay-800 {
-    --motion-delay: 800ms;
-  }
-  .motion-delay-900 {
-    --motion-delay: 900ms;
-  }
-</style>
