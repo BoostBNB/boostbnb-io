@@ -22,8 +22,12 @@
         <span class="text-[#081647]">#1 rental optimization platform</span>.
       </p>
       <div class="flex w-full justify-center gap-2">
-        <button class="btn btn-primary motion-preset-blur-left motion-duration-1500 motion-delay-1000">Get Started</button>
-        <button class="btn btn-secondary motion-preset-blur-right motion-duration-1500 motion-delay-1000">Learn more</button>
+        <div class="motion-preset-blur-left size-fit motion-duration-1500 motion-delay-1000">
+          <a class="btn btn-primary">Get started</a>
+        </div>
+        <div class="motion-preset-blur-right size-fit motion-duration-1500 motion-delay-1000">
+          <a class="btn btn-secondary">Learn more</a>
+        </div>
       </div>
     </div>
   </div>
