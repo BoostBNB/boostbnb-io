@@ -13,11 +13,11 @@
     <div>
       <h1 class="text-center text-3xl font-bold lg:text-5xl">
         <span class="motion-preset-blur-up-lg motion-duration-1000 motion-delay-500">Maximize</span>
-        <span class="motion-preset-blur-up-lg motion-duration-1000 motion-delay-600">your</span>
+        <span class="motion-delay-600 motion-preset-blur-up-lg motion-duration-1000">your</span>
         <span class="motion-preset-blur-up-lg motion-duration-1000 motion-delay-700">AirBNB</span>
-        <span class="motion-preset-blur-up-lg motion-duration-1000 motion-delay-800">Profits</span>
+        <span class="motion-delay-800 motion-preset-blur-up-lg motion-duration-1000">Profits</span>
       </h1>
-      <p class="motion-preset-blur-up-lg py-6 text-center motion-duration-1000 motion-delay-900">
+      <p class="motion-delay-900 motion-preset-blur-up-lg py-6 text-center motion-duration-1000">
         Unlock the full potential of your Short Term Rental listings and maximize your bookings with AirBNB's
         <span class="text-[#081647]">#1 rental optimization platform</span>.
       </p>
