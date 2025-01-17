@@ -56,7 +56,7 @@
         <Feature>Advanced optimization tools</Feature>
         <Feature>24/7 VIP Support</Feature>
         <Feature>Full competitor anylisis</Feature>
-        <Feature>Dedicated rental manager</Feature>
+        <Feature>Dedicated manager</Feature>
       </div>
       <a class="btn btn-neutral">Get Premium</a>
     </div>
