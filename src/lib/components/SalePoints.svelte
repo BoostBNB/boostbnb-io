@@ -3,7 +3,7 @@
 </script>
 
 <div class="my-16 text-center">
-  <h1 class="text-2xl md:text-3xl" id="salepoints">
+  <h1 class="text-2xl md:text-3xl">
     Boost your
     <span class="font-bold text-accent">Bookings</span>
     and increase

@@ -10,6 +10,7 @@
 </svelte:head>
 
 <Hero />
+<p class="size-0" id="about"></p>
 <SalePoints />
 <ProblemSolution />
 <Pricing />

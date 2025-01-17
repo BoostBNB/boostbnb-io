@@ -26,7 +26,7 @@
           <a class="btn btn-primary" href="/#">Get started</a>
         </div>
         <div class="motion-preset-blur-right size-fit motion-duration-1500 motion-delay-1000">
-          <a class="btn btn-secondary" href="/#salepoints">Learn more</a>
+          <a class="btn btn-secondary" href="/#about">Learn more</a>
         </div>
       </div>
     </div>
