@@ -4,7 +4,7 @@
 
 <div class="hero min-h-screen border-b-2 border-primary bg-gradient-to-br from-white to-blue-200 pb-4">
   <div class="hero-content flex-col lg:flex-row">
-    <HeroAnimate delay={1200} duration={1500} className="block w-3/4 scale-[0.85] md:scale-100">
+    <HeroAnimate direction="right" delay={1400} duration={1250} className="block w-3/4 scale-[0.85] md:scale-100">
       <div class="relative mx-auto h-[172px] max-w-[301px] rounded-t-xl border-[8px] border-zinc-400 bg-zinc-400 md:h-[294px] md:max-w-[512px]">
         <div class="h-[156px] overflow-hidden rounded-lg bg-white md:h-[278px]">
           <img src="/assets/hero-image.png" class="h-[156px] w-full rounded-lg md:h-[278px]" alt="" />
@@ -28,12 +28,12 @@
         </HeroAnimate>
       </p>
       <div class="flex w-full justify-center gap-2">
-        <div class="motion-preset-blur-left size-fit motion-duration-1500 motion-delay-1000">
-          <a class="btn btn-primary" href="/#">Get started</a>
-        </div>
-        <div class="motion-preset-blur-right size-fit motion-duration-1500 motion-delay-1000">
-          <a class="btn btn-secondary" href="/#about">Learn more</a>
-        </div>
+        <HeroAnimate direction="left" delay={1000} duration={1500} className="size-fit"
+          ><a class="btn btn-primary" href="/#">Get started</a></HeroAnimate
+        >
+        <HeroAnimate direction="right" delay={1000} duration={1500} className="size-fit"
+          ><a class="btn btn-secondary" href="/#about">Learn more</a></HeroAnimate
+        >
       </div>
     </div>
   </div>
