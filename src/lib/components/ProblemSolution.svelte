@@ -2,7 +2,7 @@
   import ProblemSolutionSingle from './ProblemSolution_single.svelte';
 </script>
 
-<div class="my-16 text-center">
+<div class="my-8 text-center">
   <h1 class="text-2xl md:text-3xl">
     Solving
     <span class="font-bold text-accent">Real Problems</span>

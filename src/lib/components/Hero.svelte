@@ -27,13 +27,18 @@
           <span class="text-[#081647]">#1 rental optimization platform</span>.
         </HeroAnimate>
       </p>
-      <div class="flex w-full justify-center gap-2">
-        <HeroAnimate direction="left" delay={1000} duration={1500} className="size-fit"
-          ><a class="btn btn-primary" href="/#">Get started</a></HeroAnimate
-        >
-        <HeroAnimate direction="right" delay={1000} duration={1500} className="size-fit"
-          ><a class="btn btn-secondary" href="/#about">Learn more</a></HeroAnimate
-        >
+      <div class="flex flex-col gap-1">
+        <div class="flex justify-center w-full gap-2">
+          <HeroAnimate direction="left" delay={1000} duration={1500} className="size-fit"
+          ><a class="btn btn-primary" href="/#about">Learn more</a></HeroAnimate
+          >
+          <HeroAnimate direction="right" delay={1000} duration={1500} className="size-fit"
+          ><a class="btn btn-secondary" href="/#audit">Get your free audit</a></HeroAnimate
+          >
+        </div>
+        <HeroAnimate delay={1100} duration={1500}>
+          <p class="w-full text-center text-neutral-600 text-sm">No Credit Card Required* • Get results instantly</p>
+        </HeroAnimate>
       </div>
     </div>
   </div>

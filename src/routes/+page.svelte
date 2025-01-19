@@ -3,6 +3,7 @@
   import SalePoints from '$lib/components/SalePoints.svelte';
   import ProblemSolution from '$lib/components/ProblemSolution.svelte';
   import Pricing from '$lib/components/Pricing.svelte';
+  import GetAudit from "$lib/components/GetAudit.svelte";
 </script>
 
 <svelte:head>
@@ -13,4 +14,6 @@
 <p class="size-0" id="about"></p>
 <SalePoints />
 <ProblemSolution />
+<p class="size-0" id="audit"></p>
+<GetAudit/>
 <Pricing />
