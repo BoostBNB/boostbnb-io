@@ -37,7 +37,7 @@
           >
         </div>
         <HeroAnimate delay={1100} duration={1500}>
-          <p class="w-full text-center text-neutral-600 text-sm">No Credit Card Required* • Get results instantly</p>
+          <p class="w-full text-center text-neutral-600 text-sm">No Credit Card Required<a href="#*">*</a> • Get results instantly</p>
         </HeroAnimate>
       </div>
     </div>
