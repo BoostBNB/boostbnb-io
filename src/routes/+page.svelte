@@ -13,7 +13,7 @@
 <Hero />
 <p class="size-0" id="about"></p>
 <SalePoints />
-<ProblemSolution />
 <p class="size-0" id="audit"></p>
+<ProblemSolution />
 <GetAudit/>
 <Pricing />
