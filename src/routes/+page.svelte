@@ -3,7 +3,7 @@
   import SalePoints from '$lib/components/SalePoints.svelte';
   import ProblemSolution from '$lib/components/ProblemSolution.svelte';
   import Pricing from '$lib/components/Pricing.svelte';
-  import GetAudit from "$lib/components/GetAudit.svelte";
+  import GetAudit from '$lib/components/GetAudit.svelte';
 </script>
 
 <svelte:head>
@@ -15,8 +15,6 @@
 <SalePoints />
 <p class="size-0" id="audit"></p>
 <ProblemSolution />
-<GetAudit/>
+<GetAudit />
 <Pricing />
-<div class="bg-base-300 text-center text-sm" id="*">
-  * Credit card required for paid plans
-</div>
+<div class="bg-base-300 text-center text-sm" id="*">* Credit card required for paid plans</div>

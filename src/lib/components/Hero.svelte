@@ -28,16 +28,16 @@
         </HeroAnimate>
       </p>
       <div class="flex flex-col gap-1">
-        <div class="flex justify-center w-full gap-2">
+        <div class="flex w-full justify-center gap-2">
           <HeroAnimate direction="left" delay={1000} duration={1500} className="size-fit"
-          ><a class="btn btn-primary" href="/#about">Learn more</a></HeroAnimate
+            ><a class="btn btn-primary" href="/#about">Learn more</a></HeroAnimate
           >
           <HeroAnimate direction="right" delay={1000} duration={1500} className="size-fit"
-          ><a class="btn btn-secondary" href="/#audit">Get your free audit</a></HeroAnimate
+            ><a class="btn btn-secondary" href="/#audit">Get your free audit</a></HeroAnimate
           >
         </div>
         <HeroAnimate delay={1100} duration={1500}>
-          <p class="w-full text-center text-neutral-600 text-sm">No Credit Card Required<a href="#*">*</a> • Get results instantly</p>
+          <p class="w-full text-center text-sm text-neutral-600">No Credit Card Required<a href="#*">*</a> • Get results instantly</p>
         </HeroAnimate>
       </div>
     </div>
