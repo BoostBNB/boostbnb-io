@@ -22,7 +22,7 @@
     {@render children()}
   </div>
   <div class="relative hidden overflow-hidden rounded-lg md:block" style={`height: ${pointsDivHeight}px`}>
-    <img class="img-hover-scale absolute z-10 size-full object-cover" title={alt} {alt} {src} />
+    <img class="absolute z-10 size-full object-cover img-hover-scale" title={alt} {alt} {src} />
     <div class="absolute left-0 top-0 size-full bg-base-300">
       <span class="loading loading-spinner absolute left-1/2 top-1/2 m-auto size-16 -translate-x-1/2 -translate-y-1/2 text-neutral"></span>
     </div>

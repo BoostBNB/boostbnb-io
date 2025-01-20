@@ -6,18 +6,21 @@ import type { Config } from 'tailwindcss';
 
 export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
-  plugins: [daisyui, tailwindcssMotion, plugin(function({ addUtilities }) {
-    addUtilities({
-      '.img-hover-scale': {
-        'transition': 'transform 0.4s',
-        'transform': 'scale(1)',
-        '&:hover': {
-          'transform': 'scale(1.005)',
+  plugins: [
+    daisyui,
+    tailwindcssMotion,
+    plugin(function ({ addUtilities }) {
+      addUtilities({
+        '.img-hover-scale': {
+          transition: 'transform 0.4s',
+          transform: 'scale(1)',
+          '&:hover': {
+            transform: 'scale(1.005)',
+          },
         },
-      },
-    });
-  }
-  )],
+      });
+    }),
+  ],
 
   // Tailwind Config
   theme: {
