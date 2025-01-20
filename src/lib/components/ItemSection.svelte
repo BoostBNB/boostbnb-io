@@ -21,9 +21,9 @@
   <div class="flex h-fit w-full flex-col justify-center gap-2" style="direction: ltr;" bind:clientHeight={pointsDivHeight}>
     {@render children()}
   </div>
-  <div class="relative hidden md:block">
-    <img class="absolute z-10 w-full rounded-lg object-cover" title={alt} style={`height: ${pointsDivHeight}px`} {alt} {src} />
-    <div class="absolute left-0 top-0 size-full rounded-lg bg-base-300">
+  <div class="relative hidden overflow-hidden rounded-lg md:block" style={`height: ${pointsDivHeight}px`}>
+    <img class="img-hover-scale absolute z-10 size-full object-cover" title={alt} {alt} {src} />
+    <div class="absolute left-0 top-0 size-full bg-base-300">
       <span class="loading loading-spinner absolute left-1/2 top-1/2 m-auto size-16 -translate-x-1/2 -translate-y-1/2 text-neutral"></span>
     </div>
   </div>
