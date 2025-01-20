@@ -2,7 +2,6 @@
   import SalePointSingle from './SalePoint_single.svelte';
   import ItemSection from './ItemSection.svelte';
   let pointsDivHeight: number = $state(0);
-  $inspect(pointsDivHeight);
 </script>
 
 <div class="my-16 h-fit text-center">
