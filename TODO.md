@@ -12,6 +12,6 @@
 
 ## Backend
 
-- [ ] Write scraping API for AirBNB (should be in /src/routes/+page.server.ts)
-- [ ] Write grading API
+- [ ] Write scraping API for AirBNB (should be in /src/lib/scraper.ts)
+- [ ] Write grading API (should be in /src/lib/grader.ts)
 - [ ] Write login/signup API through Supabase
