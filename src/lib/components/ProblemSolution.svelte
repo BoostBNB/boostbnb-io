@@ -1,5 +1,6 @@
 <script>
   import ProblemSolutionSingle from './ProblemSolution_single.svelte';
+  import ItemSection from './ItemSection.svelte';
 </script>
 
 <div class="my-8 text-center">
@@ -13,7 +14,7 @@
     We’ve listened to what hosts are saying on Facebook and other platforms about their struggles with optimizing listings. Here’s how BoostBNB
     addresses these common issues:
   </h3>
-  <div class="flex w-full flex-col justify-center gap-4 p-4 md:flex-row lg:mx-auto lg:w-9/12">
+  <ItemSection rtl src="/assets/pexels-nextvoyage-3051551.webp" alt="Green Coconut Palm Trees (By Nextvoyage on Pexels)">
     <ProblemSolutionSingle
       prob="I don't know how to price my listing competitively."
       sol="Smart Pricing - Automatically adjust your listing prices based on real-time market data to maximize your revenue and occupancy rates."
@@ -26,5 +27,5 @@
       prob="I’m not sure which photos work best for my listing."
       sol="Dynamic Photos - Receive recommendations for optimizing your listing photos to enhance visibility and appeal."
     />
-  </div>
+  </ItemSection>
 </div>

@@ -18,7 +18,7 @@
 </script>
 
 <div class="mx-auto grid w-full justify-center gap-2 md:mx-0 md:grid-cols-2 md:px-4 lg:px-48" style={rtl ? 'direction: rtl;' : ''}>
-  <div class="flex h-fit w-full flex-col justify-center gap-2" bind:clientHeight={pointsDivHeight}>
+  <div class="flex h-fit w-full flex-col justify-center gap-2" style="direction: ltr;" bind:clientHeight={pointsDivHeight}>
     {@render children()}
   </div>
   <img class="hidden w-full rounded-lg object-cover md:block" title={alt} style={`height: ${pointsDivHeight}px`} {alt} {src} />
