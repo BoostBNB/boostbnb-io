@@ -1,15 +1,21 @@
-<script>
+<script lang="ts">
   import SalePointSingle from './SalePoint_single.svelte';
+  import ItemSection from './ItemSection.svelte';
+  let pointsDivHeight: number = $state(0);
+  $inspect(pointsDivHeight);
 </script>
 
-<div class="my-16 text-center">
+<div class="my-16 h-fit text-center">
   <h1 class="text-2xl md:text-3xl">
     Boost your
     <span class="font-bold text-accent">Bookings</span>
     and increase
     <span class="font-bold text-accent">Revenue</span>
   </h1>
-  <div class="flex w-full flex-col justify-center gap-4 p-4 md:flex-row lg:mx-auto lg:w-9/12">
+  <ItemSection
+    src="/assets/pexels-antoine-maurin-264851287-28451195.webp"
+    alt="Scenic Coastal View of Tonnara di Scopello (By Antoine Maurin on Pexels)"
+  >
     <SalePointSingle
       src="/icons/eye_line.svg"
       alt="mingcute:eye_line"
@@ -28,5 +34,5 @@
       title="Stay ahead of market trends"
       desc="Stay ahead of market trends and ensure your listings remain competitive with our real-time AI insights."
     />
-  </div>
+  </ItemSection>
 </div>
