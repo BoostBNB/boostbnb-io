@@ -1,4 +1,4 @@
-# BoostBNB.io Frontend
+# BoostBNB.io
 
 The source code for [boostbnb.io](https://boostbnb.io)
 
