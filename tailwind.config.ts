@@ -1,6 +1,7 @@
 import tailwindcssMotion from 'tailwindcss-motion';
 import plugin from 'tailwindcss/plugin';
 import defaultTheme from 'tailwindcss/defaultTheme';
+import tailwindcssIntersect from 'tailwindcss-intersect';
 import daisyui from 'daisyui';
 import type { Config } from 'tailwindcss';
 
@@ -9,6 +10,7 @@ export default {
   plugins: [
     daisyui,
     tailwindcssMotion,
+    tailwindcssIntersect,
     plugin(function ({ addUtilities }) {
       addUtilities({
         '.img-hover-scale': {
