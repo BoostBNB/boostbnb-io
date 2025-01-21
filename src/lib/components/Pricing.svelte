@@ -57,7 +57,6 @@
         <Feature>24/7 VIP Support</Feature>
         <Feature>Dedicated manager</Feature>
         <Feature>Full competitor analysis</Feature>
-        <Feature>Unlimited listings</Feature>
       </div>
       <div class="absolute bottom-8 left-0 z-10 flex w-full justify-center">
         <a class="btn btn-neutral w-3/4" href="/#">Get Premium</a>
