@@ -28,7 +28,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        nav: '#f9fbfd63'
+        nav: '#f9fbfd63',
       },
       fontSize: {
         sm: '0.750rem',
@@ -51,8 +51,8 @@ export default {
         hero: '0 24px 48px -12px #0000002e',
       },
       borderWidth: {
-        1: '1px'
-      }
+        1: '1px',
+      },
     },
   },
 
