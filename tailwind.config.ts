@@ -44,6 +44,12 @@ export default {
         normal: '400',
         bold: '700',
       },
+      boxShadow: {
+        hero: '0 24px 48px -12px #0000002e',
+      },
+      borderWidth: {
+        1: '1px'
+      }
     },
   },
 

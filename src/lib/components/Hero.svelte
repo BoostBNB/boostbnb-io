@@ -3,11 +3,8 @@
   let clientHeight: number = 0;
 </script>
 
-<div
-  class="hero relative min-h-screen border-b-2 border-primary bg-gradient-to-br from-white to-blue-200 px-4 pb-4"
-  style={`margin-bottom: ${clientHeight}px`}
->
-  <div class="flex size-full flex-col justify-center">
+<section class="hero flex min-h-fit flex-col">
+  <div class="flex min-h-screen w-full flex-col justify-center bg-base-100 px-4 pb-4 align-middle">
     <h1 class="w-full text-center font-header text-4xl font-bold leading-none md:text-7xl lg:mx-auto lg:w-2/5">
       <HeroAnimate delay={300} duration={500}>Supercharge</HeroAnimate>
       <HeroAnimate delay={400} duration={500}>Your</HeroAnimate>
@@ -37,4 +34,5 @@
       >No Credit Card Required<a href="#*">*</a> • Get results instantly</HeroAnimate
     >
   </div>
-</div>
+  <img src="/assets/hero-image.png" alt="Boostbnb Dashboard" class="aspect-video w-1/2 -translate-y-48 rounded-lg shadow-hero" />
+</section>
