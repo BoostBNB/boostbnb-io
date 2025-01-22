@@ -38,7 +38,7 @@ export default {
       },
       fontFamily: {
         sans: ['Funnel Sans', ...defaultTheme.fontFamily.sans],
-        header: ['Bricolage Grotesque']
+        header: ['Bricolage Grotesque'],
       },
       fontWeight: {
         normal: '400',
@@ -58,7 +58,7 @@ export default {
           neutral: '#081647',
           'neutral-content': '#ffffff',
           'base-100': '#f9fbfd',
-          "--rounded-btn": "6px",
+          '--rounded-btn': '6px',
         },
       },
     ],
