@@ -13,7 +13,7 @@ export const actions: Actions = {
 
     
     // Call the scraper function and log the result
-    const result = scrapeListing(url);
+    const result = await scrapeListing(url);
     console.log('Scraped result:', result);
 
     return { success: true, result };
