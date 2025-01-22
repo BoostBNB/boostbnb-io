@@ -10,7 +10,7 @@
 
   <div class="grid grid-cols-1 items-start gap-8 px-2 md:grid-cols-4">
     <div
-      class="relative flex h-fit min-h-[28rem] flex-col gap-6 rounded-box bg-base-100 p-8 pb-32 opacity-0 shadow-lg motion-delay-300 intersect:motion-preset-blur-up intersect:opacity-100"
+      class="relative flex h-fit min-h-[28rem] flex-col gap-6 rounded-box bg-base-100 p-8 pb-32 opacity-0 shadow-lg motion-delay-100 intersect:motion-preset-blur-up intersect:opacity-100"
     >
       <div class="flex flex-col gap-4">
         <h2 class="text-center text-xl">Basic</h2>
@@ -30,7 +30,7 @@
 
     <div
       class="relative flex h-fit min-h-[28rem] flex-col gap-6 rounded-box border-2 border-primary bg-base-100 p-8 pb-32 opacity-0 shadow-lg intersect:motion-preset-slide-up intersect:opacity-100"
-      style="--motion-delay: 400ms"
+      style="--motion-delay: 200ms"
     >
       <div class="flex flex-col gap-4">
         <h2 class="text-center text-xl">Pro</h2>
@@ -53,7 +53,7 @@
     </div>
 
     <div
-      class="relative flex h-fit min-h-[28rem] flex-col gap-6 rounded-box bg-base-100 p-8 pb-32 opacity-0 shadow-lg motion-delay-500 intersect:motion-preset-slide-up intersect:opacity-100"
+      class="relative flex h-fit min-h-[28rem] flex-col gap-6 rounded-box bg-base-100 p-8 pb-32 opacity-0 shadow-lg motion-delay-300 intersect:motion-preset-slide-up intersect:opacity-100"
     >
       <div class="flex flex-col gap-4">
         <h2 class="text-center text-xl">Premium</h2>
@@ -72,7 +72,7 @@
 
     <div
       class="relative flex h-fit min-h-[28rem] flex-col gap-6 rounded-box bg-base-100 p-8 pb-32 opacity-0 shadow-lg intersect:motion-preset-slide-up intersect:opacity-100"
-      style="--motion-delay: 600ms"
+      style="--motion-delay: 400ms"
     >
       <div class="flex flex-col gap-4">
         <h2 class="text-center text-xl">Enterprise</h2>

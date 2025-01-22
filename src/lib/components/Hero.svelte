@@ -34,5 +34,9 @@
       >No Credit Card Required<a href="#*">*</a> • Get results instantly</HeroAnimate
     >
   </div>
-  <img src="/assets/hero-image.png" alt="Boostbnb Dashboard" class="aspect-video w-1/2 -translate-y-48 rounded-lg shadow-hero" />
+  <img
+    src="/assets/hero-image.png"
+    alt="Boostbnb Dashboard"
+    class="motion-preset-slide-up aspect-video w-1/2 -translate-y-48 rounded-lg shadow-hero motion-delay-1500"
+  />
 </section>
