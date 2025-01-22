@@ -27,6 +27,9 @@ export default {
   // Tailwind Config
   theme: {
     extend: {
+      colors: {
+        nav: '#f9fbfd63'
+      },
       fontSize: {
         sm: '0.750rem',
         base: '1rem',

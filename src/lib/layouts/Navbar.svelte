@@ -7,12 +7,15 @@
   onMount(() => {
     addEventListener('scroll', () => {
       const navbar = document.getElementById('navbar')!;
+      const classes = ['shadow-xl', 'bg-nav', 'backdrop-filter', 'backdrop-blur-md'];
       if (document.documentElement.scrollTop > 0) {
-        navbar.classList.add('shadow-xl');
-        navbar.classList.add('bg-base-100');
+        for (const i in classes) {
+          navbar.classList.add(classes[i]);
+        }
       } else {
-        navbar.classList.remove('shadow-xl');
-        navbar.classList.remove('bg-base-100');
+        for (const i in classes) {
+          navbar.classList.remove(classes[i]);
+        }
       }
     });
   });
