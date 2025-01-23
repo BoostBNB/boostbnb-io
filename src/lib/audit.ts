@@ -4,28 +4,28 @@ import { askChatGPT } from './chat';
 export default async function auditListing(url: string): Promise<string> {
   try {
     // Scrape the listing details
-    const { listing_details } = await scrapeAirbnbListing(url);
+    const listing_details = await scrapeAirbnbListing(url);
 
     // Construct ChatGPT prompt with scraped data
     const prompt = `
 You are an expert in Airbnb listing optimization. Analyze the following listing data and provide a comprehensive audit:
 - Title: ${listing_details.title}
 - Description: ${listing_details.description}
-- Property Type: ${listing_details.property_type}
-- Room Type: ${listing_details.room_type}
+- Property Type: ${listing_details.propertyType}
+- Room Type: ${listing_details.roomType}
 - Location: ${listing_details.location}
-- Guest Capacity: ${listing_details.guest_capacity}
-- Nightly Rate: $${listing_details.nightly_rate}
-- Cleaning Fee: $${listing_details.cleaning_fee}
-- Dynamic Pricing: ${listing_details.dynamic_pricing}
-- Minimum Stay: ${listing_details.minimum_stay} nights
-- Photo Count: ${listing_details.photo_count}
-- Captions: ${listing_details.captions}
-- Review Count: ${listing_details.review_count}
-- Rating: ${listing_details.rating}
-- Recent Reviews: ${listing_details.recent_reviews}
-- Provided Amenities: ${listing_details.provided_amenities.join(', ')}
-- Missing Amenities: ${listing_details.missing_amenities.join(', ')}
+- Guest Capacity: ${listing_details.guestCapacity}
+- Nightly Rate: $${listing_details.pricing.nightlyRate}
+- Cleaning Fee: $${listing_details.pricing.cleaningFee}
+- Dynamic Pricing: ${listing_details.pricing.dynamicPricing}
+- Minimum Stay: ${listing_details.pricing.minimumStay} nights
+- Photo Count: ${listing_details.photos.photoCount}
+- Captions: ${listing_details.photos.captions}
+- Review Count: ${listing_details.reviews.reviewCount}
+- Rating: ${listing_details.reviews.rating}
+- Recent Reviews: ${listing_details.reviews.recentReviews}
+- Provided Amenities: ${listing_details.amenities.provided.join(', ')}
+- Missing Amenities: ${listing_details.amenities.missing.join(', ')}
 
 Provide:
 1. An overall score out of 100 with reasoning.
