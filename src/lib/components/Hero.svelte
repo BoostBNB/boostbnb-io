@@ -1,16 +1,28 @@
 <script lang="ts">
   import HeroAnimate from './Hero_animate.svelte';
   let mainClientHeight: number = $state(0);
+  let heroHeight: number = $state(0);
+  let heroWidth: number = $state(0);
+
+  interface dimensions {
+    width: number;
+    height: number;
+  }
+
+  let heroDimesnions: dimensions = $derived({
+    width: heroWidth - 32,
+    height: heroHeight - 32,
+  });
 </script>
 
-<section class="hero flex min-h-fit flex-col" id="hero">
+<section class="hero flex min-h-fit flex-col" id="hero" bind:clientHeight={heroHeight} bind:clientWidth={heroWidth}>
   <!-- 
    This CSS calc() determines the amount of margin
    needed on the top in order to have the text be 
    centered vertically onscreen 
   -->
   <div
-    class="mb-8 flex w-full flex-col justify-center bg-base-100 px-4 align-middle"
+    class="mb-8 flex w-full flex-col justify-center px-4 align-middle"
     bind:clientHeight={mainClientHeight}
     style={`margin-top: calc((100vh - ${mainClientHeight}px ) / 2)`}
   >
@@ -52,3 +64,7 @@
     />
   </div>
 </section>
+<div
+  class="absolute left-4 top-4 -z-10 rounded-lg bg-gradient-to-b from-white to-blue-200 align-middle"
+  style={`height: ${heroDimesnions.height}px; width: ${heroDimesnions.width}px;`}
+></div>
