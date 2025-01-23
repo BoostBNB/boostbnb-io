@@ -1,8 +1,9 @@
 import type { Actions } from './$types';
-import scrapeListing from '$lib/scraper';
+import auditListing from '$lib/audit';
 
 export const actions: Actions = {
-  scrape: async ({ request }) => {
+  audit: async ({ request }) => {
+    console.log("Auditing")
     const data = await request.formData();
     const url = data.get('bnburl');
 
@@ -13,8 +14,8 @@ export const actions: Actions = {
 
     
     // Call the scraper function and log the result
-    const result = await scrapeListing(url);
-    console.log('Scraped result:', result);
+    const result = await auditListing(url);
+    console.log('Audit result:', result);
 
     return { success: true, result };
   },
