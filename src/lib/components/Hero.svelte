@@ -1,10 +1,19 @@
 <script lang="ts">
   import HeroAnimate from './Hero_animate.svelte';
-  let clientHeight: number = 0;
+  let mainClientHeight: number = $state(0);
 </script>
 
-<section class="hero flex min-h-fit flex-col">
-  <div class="flex min-h-screen w-full flex-col justify-center bg-base-100 px-4 pb-4 align-middle">
+<section class="hero flex min-h-fit flex-col" id="hero">
+  <!-- 
+   This CSS calc() determines the amount of margin
+   needed on the top in order to have the text be 
+   centered vertically onscreen 
+  -->
+  <div
+    class="mb-8 flex w-full flex-col justify-center bg-base-100 px-4 pb-4 align-middle"
+    bind:clientHeight={mainClientHeight}
+    style={`margin-top: calc((100vh - ${mainClientHeight}px ) / 2)`}
+  >
     <h1 class="w-full text-center font-header text-4xl font-bold leading-none md:text-7xl lg:mx-auto lg:w-2/5">
       <HeroAnimate delay={300} duration={500}>Supercharge</HeroAnimate>
       <HeroAnimate delay={400} duration={500}>Your</HeroAnimate>
@@ -34,9 +43,12 @@
       >No Credit Card Required<a href="#*">*</a> • Get results instantly</HeroAnimate
     >
   </div>
-  <img
-    src="/assets/hero-image.png"
-    alt="Boostbnb Dashboard"
-    class="motion-preset-slide-up aspect-video w-1/2 -translate-y-48 rounded-lg shadow-hero motion-delay-1500"
-  />
+
+  <div class="motion-preset-slide-up h-fit w-full motion-delay-1500">
+    <img
+      src="/assets/hero-image.png"
+      alt="Boostbnb Dashboard"
+      class="relative z-10 mx-auto aspect-video w-1/2 rounded-lg border-2 border-neutral shadow-hero"
+    />
+  </div>
 </section>
