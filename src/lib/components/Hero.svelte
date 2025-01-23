@@ -10,7 +10,7 @@
    centered vertically onscreen 
   -->
   <div
-    class="mb-8 flex w-full flex-col justify-center bg-base-100 px-4 pb-4 align-middle"
+    class="mb-8 flex w-full flex-col justify-center bg-base-100 px-4 align-middle"
     bind:clientHeight={mainClientHeight}
     style={`margin-top: calc((100vh - ${mainClientHeight}px ) / 2)`}
   >
@@ -48,7 +48,7 @@
     <img
       src="/assets/hero-image.png"
       alt="Boostbnb Dashboard"
-      class="relative z-10 mx-auto aspect-video w-1/2 rounded-lg border-2 border-neutral shadow-hero"
+      class="relative z-10 mx-auto aspect-video w-11/12 rounded-lg border-2 border-neutral shadow-hero md:w-1/2"
     />
   </div>
 </section>
