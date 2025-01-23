@@ -10,7 +10,7 @@
 </script>
 
 <div
-  class="intersect-once card mx-auto w-11/12 rounded-lg bg-base-200 opacity-0 intersect:motion-preset-slide-left intersect:opacity-100 md:mx-0 md:w-full"
+  class="intersect-once card mx-auto w-11/12 rounded-lg bg-base-200 opacity-0 motion-delay-100 intersect:motion-preset-slide-left intersect:opacity-100 md:mx-0 md:w-full"
 >
   <div class="card-body text-center">
     <img class="h-16" {src} {alt} />
