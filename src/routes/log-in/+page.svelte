@@ -43,7 +43,7 @@
           {form?.message}
         </div>
       {/if}
-      <p class="mt-21">Don't have an account? <a href="/sign-up" class="link">Sign Up</a>.</p>
+      <p class="mt-2">Don't have an account? <a href="/sign-up" class="link">Sign Up</a>.</p>
     </form>
   </div>
 </div>

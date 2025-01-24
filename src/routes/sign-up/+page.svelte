@@ -55,11 +55,11 @@
       {/if}
       <button class="btn btn-primary">{loading ? 'Loading' : 'Sign Up'}</button>
       {#if form?.message !== undefined}
-        <div class="success mt-2 text-center text-sm text-success {form?.success ? '' : 'fail'}">
+        <div class="success mt- text-center text-sm text-success {form?.success ? '' : 'fail'}">
           {form?.message}
         </div>
       {/if}
-      <p class="mt-21">Already have an account? <a href="/log-in" class="link">Log In</a>.</p>
+      <p class="mt-2">Already have an account? <a href="/log-in" class="link">Log In</a>.</p>
     </form>
   </div>
 </div>
