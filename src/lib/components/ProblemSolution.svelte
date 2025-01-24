@@ -10,10 +10,6 @@
     for
     <span class="font-bold text-accent">Hosts Everywhere</span>
   </h1>
-  <h3 class="mx-auto w-3/4 text-lg text-gray-500">
-    We’ve listened to what hosts are saying on Facebook and other platforms about their struggles with optimizing listings. Here’s how BoostBNB
-    addresses these common issues:
-  </h3>
   <ItemSection rtl src="/assets/pexels-nextvoyage-3051551.webp" alt="Green Coconut Palm Trees (By Nextvoyage on Pexels)">
     <ProblemSolutionSingle
       prob="I don't know how to price my listing competitively."
