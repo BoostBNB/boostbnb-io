@@ -13,8 +13,8 @@
 <Hero />
 <p class="size-0" id="about"></p>
 <SalePoints />
-<p class="size-0" id="audit"></p>
 <ProblemSolution />
+<p class="size-0" id="audit"></p>
 <GetAudit />
 <Pricing />
 <div class="bg-base-300 text-center text-sm" id="*">* Credit card required for paid plans</div>
