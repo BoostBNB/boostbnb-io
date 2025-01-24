@@ -1,6 +1,11 @@
-<script>
-  import Feature from './Feature.svelte';
-</script>
+<script lang="ts"></script>
+
+{#snippet feature(feature: string)}
+  <div class="flex items-center gap-2">
+    <img src="/icons/check_fill.svg" alt="mingcute:check_fill" />
+    {feature}
+  </div>
+{/snippet}
 
 <div class="mt-8 flex w-full flex-col items-center gap-8 bg-base-300 pb-16 pt-8" id="pricing">
   <div class="flex flex-col gap-2 text-center">
@@ -17,11 +22,11 @@
         <h1 class="text-center text-5xl"><span class="w-fit font-bold leading-none">$49</span><span class="text-2xl">/Month</span></h1>
       </div>
       <div class="flex flex-col">
-        <Feature>1 AirBNB listing</Feature>
-        <Feature>Weekly audit reports</Feature>
-        <Feature>Basic optimization tools</Feature>
-        <Feature>Email Support</Feature>
-        <Feature>Analytics Dashboard</Feature>
+        {@render feature('1 AirBNB listing')}
+        {@render feature('Weekly audit reports')}
+        {@render feature('Basic optimization tools')}
+        {@render feature('Email Support')}
+        {@render feature('Analytics Dashboard')}
       </div>
       <div class="absolute bottom-8 left-0 z-10 flex w-full justify-center">
         <a class="btn btn-neutral w-3/4" href="/#">Get Basic</a>
@@ -39,12 +44,12 @@
         </div>
       </div>
       <div class="flex flex-col">
-        <Feature>Everything in Basic</Feature>
-        <Feature>Up to 3 AirBNB listings</Feature>
-        <Feature>Unlimited audit reports</Feature>
-        <Feature>Advanced optimization tools</Feature>
-        <Feature>Priority Support</Feature>
-        <Feature>CoHost AI</Feature>
+        {@render feature('Everything in Basic')}
+        {@render feature('Up to 3 AirBNB listings')}
+        {@render feature('Unlimited audit reports')}
+        {@render feature('Advanced optimization tools')}
+        {@render feature('Priority Support')}
+        {@render feature('CoHost AI')}
       </div>
       <div class="absolute bottom-8 left-0 z-10 flex w-full justify-center">
         <a class="btn btn-primary w-3/4" href="/#">Get Pro</a>
@@ -60,10 +65,10 @@
         <h1 class="text-center text-5xl"><span class="w-fit font-bold leading-none">$129</span><span class="text-2xl">/Month</span></h1>
       </div>
       <div class="flex flex-col">
-        <Feature>Everything in Pro</Feature>
-        <Feature>24/7 VIP Support</Feature>
-        <Feature>Dedicated manager</Feature>
-        <Feature>Full competitor analysis</Feature>
+        {@render feature('Everything in Pro')}
+        {@render feature('24/7 VIP Support')}
+        {@render feature('Dedicated manager')}
+        {@render feature('Full competitor analysis')}
       </div>
       <div class="absolute bottom-8 left-0 z-10 flex w-full justify-center">
         <a class="btn btn-neutral w-3/4" href="/#">Get Premium</a>
@@ -79,8 +84,8 @@
         <h1 class="text-center text-5xl"><span class="w-fit font-bold leading-none">$249</span><span class="text-2xl">/Month</span></h1>
       </div>
       <div class="flex flex-col">
-        <Feature>Everything in Premium</Feature>
-        <Feature>Unlimited listings</Feature>
+        {@render feature('Everything in Premium')}
+        {@render feature('Unlimited listings')}
       </div>
       <div class="absolute bottom-8 left-0 z-10 flex w-full justify-center">
         <a class="btn btn-neutral w-3/4" href="/#">Get Enterprise</a>
