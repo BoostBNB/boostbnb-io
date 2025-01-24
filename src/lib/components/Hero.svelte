@@ -65,6 +65,10 @@
   </div>
 </section>
 <div
-  class="absolute left-4 top-4 -z-10 rounded-lg bg-gradient-to-b from-white to-blue-200 align-middle"
+  class="absolute left-4 top-4 -z-10 hidden rounded-lg bg-gradient-to-b from-white to-blue-200 align-middle md:block"
   style={`height: ${heroDimesnions.height}px; width: ${heroDimesnions.width}px;`}
+></div>
+<div
+  class="absolute left-0 top-0 -z-10 block w-full rounded-lg bg-gradient-to-b from-white to-blue-200 align-middle md:hidden"
+  style={`height: ${heroHeight + 8}px;`}
 ></div>
