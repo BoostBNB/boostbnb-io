@@ -32,7 +32,7 @@ export const actions: Actions = {
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
-    })
+    });
 
     if (error) {
       return fail(400, {
