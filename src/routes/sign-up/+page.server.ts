@@ -35,7 +35,7 @@ export const actions: Actions = {
       options: {
         emailRedirectTo: 'http://localhost:5173/log-in',
       },
-    })
+    });
 
     if (error) {
       return fail(400, {
