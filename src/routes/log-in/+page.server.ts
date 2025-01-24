@@ -5,9 +5,9 @@ import type { Actions, PageServerLoad } from './$types'
 export const load: PageServerLoad = async ({ url, locals: { safeGetSession } }) => {
   const { session } = await safeGetSession()
 
-  // if the user is already logged in return them to the account page
+  // if the user is already logged in return them to the home page
   if (session) {
-    redirect(303, '/account')
+    redirect(303, '/')
   }
 
   return { url: url.origin }
@@ -16,19 +16,25 @@ export const load: PageServerLoad = async ({ url, locals: { safeGetSession } }) 
 export const actions: Actions = {
   default: async (event) => {
     const {
-      url,
       request,
       locals: { supabase },
     } = event
     const formData = await request.formData()
     const email = formData.get('email') as string
+    // eslint-disable-next-line no-useless-escape
     const validEmail = /^[\w-\.+]+@([\w-]+\.)+[\w-]{2,8}$/.test(email)
 
     if (!validEmail) {
       return fail(400, { errors: { email: 'Please enter a valid email address' }, email })
     }
 
-    const { error } = await supabase.auth.signInWithOtp({ email })
+    const { error } = await supabase.auth.signInWithOtp({ 
+      email,
+      options: {
+      // set this to false if you do not want the user to be automatically signed up
+      shouldCreateUser: true,
+      emailRedirectTo: 'http://localhost:5173',
+    },})
 
     if (error) {
       return fail(400, {
