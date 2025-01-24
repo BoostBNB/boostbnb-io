@@ -22,25 +22,27 @@
   <title>Login</title>
 </svelte:head>
 
-<div class="h-screen w-screen">
-  <form
-    class="absolute left-1/2 top-1/2 flex max-w-md -translate-x-1/2 -translate-y-1/2 flex-col rounded-md bg-base-200 p-6 text-center"
-    method="POST"
-    use:enhance={handleSubmit}
-  >
-    <h1 class="text-2xl font-bold">Login</h1>
-    <p class="mx-auto mb-6 w-3/4">Log in or Sign Up via magic link with your email below</p>
-    <input type="email" id="email" name="email" class="input input-bordered mb-2" placeholder="janedoe@example.com" value={form?.email ?? ''} />
-    {#if form?.errors?.email}
-      <span class="error flex items-center text-sm">
-        {form?.errors?.email}
-      </span>
-    {/if}
-    <button class="btn btn-primary">{loading ? 'Loading' : 'Send magic link'}</button>
-    {#if form?.message !== undefined}
-      <div class="success {form?.success ? '' : 'fail'}">
-        {form?.message}
-      </div>
-    {/if}
-  </form>
+<div class="h-screen w-screen bg-[url('/assets/pexels-elina-sazonova-1838589.webp')] bg-cover">
+  <div class="size-full bg-nav backdrop-blur-md backdrop-filter">
+    <form
+      class="absolute left-1/2 top-1/2 flex max-w-md -translate-x-1/2 -translate-y-1/2 flex-col rounded-md bg-base-200 p-6 text-center"
+      method="POST"
+      use:enhance={handleSubmit}
+    >
+      <h1 class="text-2xl font-bold">Login</h1>
+      <p class="mx-auto mb-6 w-3/4">Log in or Sign Up via magic link with your email below</p>
+      <input type="email" id="email" name="email" class="input input-bordered mb-2" placeholder="janedoe@example.com" value={form?.email ?? ''} />
+      {#if form?.errors?.email}
+        <span class="error flex items-center text-sm">
+          {form?.errors?.email}
+        </span>
+      {/if}
+      <button class="btn btn-primary">{loading ? 'Loading' : 'Send magic link'}</button>
+      {#if form?.message !== undefined}
+        <div class="success {form?.success ? '' : 'fail'}">
+          {form?.message}
+        </div>
+      {/if}
+    </form>
+  </div>
 </div>
