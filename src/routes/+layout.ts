@@ -1,9 +1,9 @@
-import { createBrowserClient, createServerClient, isBrowser } from '@supabase/ssr'
-import { PUBLIC_SUPABASE_ANON_KEY, PUBLIC_SUPABASE_URL } from '$env/static/public'
-import type { LayoutLoad } from './$types'
+import { createBrowserClient, createServerClient, isBrowser } from '@supabase/ssr';
+import { PUBLIC_SUPABASE_ANON_KEY, PUBLIC_SUPABASE_URL } from '$env/static/public';
+import type { LayoutLoad } from './$types';
 
 export const load: LayoutLoad = async ({ fetch, data, depends }) => {
-  depends('supabase:auth')
+  depends('supabase:auth');
 
   const supabase = isBrowser()
     ? createBrowserClient(PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY, {
@@ -17,10 +17,10 @@ export const load: LayoutLoad = async ({ fetch, data, depends }) => {
         },
         cookies: {
           getAll() {
-            return data.cookies
+            return data.cookies;
           },
         },
-      })
+      });
 
   /**
    * It's fine to use `getSession` here, because on the client, `getSession` is
@@ -29,7 +29,7 @@ export const load: LayoutLoad = async ({ fetch, data, depends }) => {
    */
   const {
     data: { session },
-  } = await supabase.auth.getSession()
+  } = await supabase.auth.getSession();
 
-  return { supabase, session }
-}
+  return { supabase, session };
+};
