@@ -22,8 +22,14 @@ const IMG_CAPTION_SELECTOR = 'div._1hwkgn6 > ul._7h1p0g';
 const EXIT_IMG_SELECTOR =
   'div > div > section > div > div > div.p1psejvv.atm_9s_1bgihbq.dir.dir-ltr > div > section > div > div > div > div > section > div > div > div.p1psejvv.atm_9s_1bgihbq.dir.dir-ltr > div > div._xgxxi4 > div._1kpxj8f > button';
 
+  const TRANSLATION_POPUP_CLOSE_SELECTOR = 'div > div > section > div > div > div.p1psejvv.atm_9s_1bgihbq.dir.dir-ltr > div > div.c1lbtiq8.atm_mk_stnw88.atm_9s_1txwivl.atm_fq_1tcgj5g.atm_wq_kb7nvz.atm_tk_1tcgj5g.dir.dir-ltr > button';
+
+
+
+
+
 export async function scrapeAirbnbListing(url: string): Promise<any> {
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({ headless: false });
   const page = await browser.newPage();
 
   console.log('Waiting For Full Page To Load ...');
@@ -31,7 +37,24 @@ export async function scrapeAirbnbListing(url: string): Promise<any> {
   await page.waitForNavigation({ waitUntil: 'networkidle0' });
 
   try {
+    // Check if the popup close button exists
+    const popupCloseButton = await page.$(TRANSLATION_POPUP_CLOSE_SELECTOR);
+    if (popupCloseButton) {
+      console.log('Popup detected. Closing it...');
+      await popupCloseButton.click(); // Click the close button
+      await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait for the page to stabilize
+    } else {
+      console.log('No popup detected. Proceeding...');
+    }
+  } catch (err) {
+    console.log('Error handling popup:', (err as Error).message);
+  }
+
+  try {
     console.log('Getting Basic Data');
+    console.log('Checking for translation popup...');
+    
+    
 
     // Title
     const titleHandle = await page.$(TITLE_SELECTOR);
@@ -134,7 +157,61 @@ export async function scrapeAirbnbListing(url: string): Promise<any> {
       captions.push(caption);
     }
 
-    await page.click(EXIT_IMG_SELECTOR);
+    try {
+      console.log('Getting Images...');
+    
+      // Photos
+      await page.click(SHOW_PHOTOS_SELECTOR);
+      await page.waitForNetworkIdle();
+    
+      let photoCount = await page.evaluate(() => document.querySelectorAll('div._cdo1mj').length);
+    
+      let captionHandles = await page.$$(IMG_CAPTION_SELECTOR);
+      let captions = [];
+    
+      for (let captionHandle of captionHandles) {
+        let caption = await page.evaluate((el) => el.innerText, captionHandle);
+        captions.push(caption);
+      }
+    
+      // Attempt to exit image view
+      try {
+        await page.click(EXIT_IMG_SELECTOR);
+        await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait after closing the image view
+      } catch (err) {
+        console.log('Image selector failed. Retrying...');
+        // Reload page and reattempt
+        await page.goto(url);
+        await page.waitForNavigation({ waitUntil: 'networkidle0' });
+    
+        // Handle translation popup if it reappears
+        const TRANSLATION_POPUP_CLOSE_SELECTOR = 'span[data-button-content="true"]';
+        const popupCloseButton = await page.$(TRANSLATION_POPUP_CLOSE_SELECTOR);
+        if (popupCloseButton) {
+          console.log('Translation popup detected again. Closing it...');
+          await popupCloseButton.click();
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+        }
+    
+        console.log('Retrying image selector...');
+        await page.click(SHOW_PHOTOS_SELECTOR);
+        await page.waitForNetworkIdle();
+    
+        photoCount = await page.evaluate(() => document.querySelectorAll('div._cdo1mj').length);
+    
+        captionHandles = await page.$$(IMG_CAPTION_SELECTOR);
+        captions = [];
+    
+        for (let captionHandle of captionHandles) {
+          let caption = await page.evaluate((el) => el.innerText, captionHandle);
+          captions.push(caption);
+        }
+      }
+    } catch (err) {
+      console.log('Error retrieving images:', (err as Error).message);
+    }
+    
+
     await new Promise((r) => setTimeout(r, 1500));
 
     console.log('Getting Amenities...');
