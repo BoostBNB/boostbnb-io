@@ -30,7 +30,7 @@ async function delay(ms: number) {
 }
 
 export async function scrapeAirbnbListing(url: string): Promise<any> {
-  const browser = await puppeteer.launch({ headless: false });
+  const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
 
   console.log('Waiting For Full Page To Load ...');
