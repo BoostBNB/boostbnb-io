@@ -1,9 +1,10 @@
-<script>
+<script lang="ts">
   import Hero from '$lib/components/Hero.svelte';
   import SalePoints from '$lib/components/SalePoints.svelte';
   import ProblemSolution from '$lib/components/ProblemSolution.svelte';
   import Pricing from '$lib/components/Pricing.svelte';
   import GetAudit from '$lib/components/GetAudit.svelte';
+  import ProjectStats from '$lib/components/ProjectStats.svelte';
 </script>
 
 <svelte:head>
@@ -11,9 +12,12 @@
 </svelte:head>
 
 <Hero />
+<ProjectStats />
 <p class="size-0" id="about"></p>
-<SalePoints />
-<ProblemSolution />
+<!-- 
+  <SalePoints />
+  <ProblemSolution />
+ -->
 <p class="size-0" id="audit"></p>
 <GetAudit />
 <Pricing />
