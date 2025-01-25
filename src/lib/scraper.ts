@@ -7,8 +7,7 @@ const PROPERTY_TYPE_SELECTOR =
 const ROOM_INFO_SELECTOR =
   'div > div > div > section > div.o1kjrihn.atm_c8_km0zk7.atm_g3_18khvle.atm_fr_1m9t47k.atm_h3_1y44olf.atm_c8_2x1prs__oggzyc.atm_g3_1jbyh58__oggzyc.atm_fr_11a07z3__oggzyc.dir.dir-ltr > ol > li';
 const PERK_LIST_SELECTOR = 'section > div.i1jq8c6w.atm_9s_1txwivl.atm_ar_1bp4okc.atm_cx_1tcgj5g_95nicl.dir.dir-ltr > div';
-const DESCRIPTION_SELECTOR =
-  'div > div > section > div > div > div.p1psejvv.atm_9s_1bgihbq.dir.dir-ltr > div > div._1jza0fl > section > div > div > div > div > div > div > div > div._tp3sbt';
+const DESCRIPTION_SELECTOR = 'div.d1isfkwk.atm_vv_1jtmq4.atm_w4_1hnarqo.dir.dir-ltr > div > span > span';
 const SHOW_ALL_AMENITIES_SELECTOR = 'section > div.b9672i7.atm_h3_8tjzot.atm_h3_1ph3nq8__oggzyc.dir.dir-ltr > button';
 const AMENITIES_LIST_SELECTOR =
   'div > div > section > div > div > div.p1psejvv.atm_9s_1bgihbq.dir.dir-ltr > div > div._17itzz4 > div > div > div > section > section > div';
@@ -17,6 +16,11 @@ const RATING_SELECTOR =
 const REVIEW_COUNT_SELECTOR =
   'div > div > div > a > div > div.rddb4xa.atm_9s_1txwivl.atm_ar_1bp4okc.atm_h_1h6ojuz.atm_cx_t94yts.atm_le_yh40bf.atm_le_idpfg4__14195v1.atm_cx_idpfg4__14195v1.dir.dir-ltr > div.r16onr0j.atm_c8_vvn7el.atm_g3_k2d186.atm_fr_1vi102y.atm_gq_myb0kj.atm_vv_qvpr2i.atm_c8_sz6sci__14195v1.atm_g3_17zsb9a__14195v1.atm_fr_kzfbxz__14195v1.atm_gq_idpfg4__14195v1.dir.dir-ltr';
 const REVIEW_LIST_SELECTOR = 'div > section > div._88xxct > div > div > div._b7zir4z';
+const CLEAN_FEE_SELECTOR = 'div > div > div > div > div > div > div > div._1cvivhm > div > section > div._1n7cvm7 > div._14omvfj';
+const SHOW_PHOTOS_SELECTOR = 'div > div > div > div > div > div._z80d2i > div > div._ekor09 > button';
+const IMG_CAPTION_SELECTOR = 'div._1hwkgn6 > ul._7h1p0g';
+const EXIT_IMG_SELECTOR =
+  'div > div > section > div > div > div.p1psejvv.atm_9s_1bgihbq.dir.dir-ltr > div > section > div > div > div > div > section > div > div > div.p1psejvv.atm_9s_1bgihbq.dir.dir-ltr > div > div._xgxxi4 > div._1kpxj8f > button';
 
 export async function scrapeAirbnbListing(url: string): Promise<any> {
   const browser = await puppeteer.launch({ headless: true });
@@ -36,6 +40,19 @@ export async function scrapeAirbnbListing(url: string): Promise<any> {
     // Nightly Rate
     const priceHandle = await page.$(PRICE_SELECTOR);
     const nightlyRate = priceHandle != null ? await page.evaluate((el) => el.innerText, priceHandle) : null;
+
+    // Cleaning Fee
+    let cleaningFee = null;
+    const charges = await page.$$(CLEAN_FEE_SELECTOR);
+
+    for (let feeHandle of charges) {
+      let feeName = await page.evaluate((el) => el.children[0].textContent, feeHandle);
+      let fee = await page.evaluate((el) => el.children[1].textContent, feeHandle);
+
+      if (feeName?.search('Cleaning fee') != -1) {
+        cleaningFee = fee;
+      }
+    }
 
     // Property Type & Location
     const propertyTypeHandle = await page.$(PROPERTY_TYPE_SELECTOR);
@@ -99,10 +116,28 @@ export async function scrapeAirbnbListing(url: string): Promise<any> {
 
     // Description
     const descriptionHandle = await page.$(DESCRIPTION_SELECTOR);
-    const description = await page.evaluate(el => el?.innerText, descriptionHandle);
+    const description = await page.evaluate((el) => el?.innerText, descriptionHandle);
 
+    console.log('Getting Images...');
 
-    console.log("Getting Amenities");
+    // Photos
+    await page.click(SHOW_PHOTOS_SELECTOR);
+    await page.waitForNetworkIdle();
+
+    let photoCount = await page.evaluate(() => document.querySelectorAll('div._cdo1mj').length);
+
+    let captionHandles = await page.$$(IMG_CAPTION_SELECTOR);
+    let captions = [];
+
+    for (let captionHandle of captionHandles) {
+      let caption = await page.evaluate((el) => el.innerText, captionHandle);
+      captions.push(caption);
+    }
+
+    await page.click(EXIT_IMG_SELECTOR);
+    await new Promise((r) => setTimeout(r, 1500));
+
+    console.log('Getting Amenities...');
 
     // Amenities
     await page.click(SHOW_ALL_AMENITIES_SELECTOR);
@@ -142,16 +177,16 @@ export async function scrapeAirbnbListing(url: string): Promise<any> {
       propertyType,
       roomType: null,
       location,
-      guestCapacity: guestCapacity != null ? parseInt(guestCapacity.replace("guests", "").replace(" ", "")) : 0,
+      guestCapacity: guestCapacity != null ? parseInt(guestCapacity.replace('guests', '').replace(' ', '')) : 0,
       pricing: {
-        nightlyRate: nightlyRate != null ? parseFloat(nightlyRate.replace("$", "").replace(" ", "").replace(",", "")) : 0,
-        cleaningFee: null,
+        nightlyRate: nightlyRate != null ? parseFloat(nightlyRate.replace('$', '').replace(' ', '').replace(',', '')) : 0,
+        cleaningFee: cleaningFee != null ? parseInt(cleaningFee.replace('$', '').replace(',', '')) : null,
         dynamicPricing: null,
         minimumStay: null,
       },
       photos: {
-        photoCount: null,
-        captions: null,
+        photoCount: photoCount,
+        captions: captions,
       },
       reviews: {
         reviewCount: reviewCount != null ? parseInt(reviewCount) : null,

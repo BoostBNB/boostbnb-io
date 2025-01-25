@@ -5,6 +5,7 @@ export default async function auditListing(url: string): Promise<string> {
   try {
     // Scrape the listing details
     const listing_details = await scrapeAirbnbListing(url);
+    console.log(listing_details);
 
     // Construct ChatGPT prompt with scraped data
     const prompt = `
