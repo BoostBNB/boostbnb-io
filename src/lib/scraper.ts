@@ -67,9 +67,9 @@ export async function scrapeAirbnbListing(url: string): Promise<any> {
     let cleaningFee = null;
     const charges = await page.$$(CLEAN_FEE_SELECTOR);
 
-    for (let feeHandle of charges) {
-      let feeName = await page.evaluate((el) => el.children[0].textContent, feeHandle);
-      let fee = await page.evaluate((el) => el.children[1].textContent, feeHandle);
+    for (const feeHandle of charges) {
+      const feeName = await page.evaluate((el) => el.children[0].textContent, feeHandle);
+      const fee = await page.evaluate((el) => el.children[1].textContent, feeHandle);
 
       if (feeName?.search('Cleaning fee') != -1) {
         cleaningFee = fee;
@@ -89,8 +89,8 @@ export async function scrapeAirbnbListing(url: string): Promise<any> {
     let beds = null;
     let bath = null;
 
-    for (let propertyInfoHandle of propertyInfoListHandle) {
-      let infoPoint = await page.evaluate((el) => el.innerText, propertyInfoHandle);
+    for (const propertyInfoHandle of propertyInfoListHandle) {
+      const infoPoint = await page.evaluate((el) => el.innerText, propertyInfoHandle);
 
       if (infoPoint.search('guest') != -1) {
         guestCapacity = infoPoint;
@@ -107,7 +107,7 @@ export async function scrapeAirbnbListing(url: string): Promise<any> {
     const perkHandles = await page.$$(PERK_LIST_SELECTOR);
     let roomPerks = [];
 
-    for (let perkHandle of perkHandles) {
+    for (const perkHandle of perkHandles) {
       const perkTitle = await page.evaluate((el) => el.querySelector('div._llvyuq')?.textContent, perkHandle);
       const perkBody = await page.evaluate((el) => el.querySelector('div._1hwkgn6')?.textContent, perkHandle);
 
@@ -124,10 +124,10 @@ export async function scrapeAirbnbListing(url: string): Promise<any> {
 
     // Highlighted Reviews
     const reviewHandles = await page.$$(REVIEW_LIST_SELECTOR);
-    let highlightedReviews = [];
+    const highlightedReviews = [];
 
-    for (let reviewHandle of reviewHandles) {
-      let review = await page.evaluate((el) => {
+    for (const reviewHandle of reviewHandles) {
+      const review = await page.evaluate((el) => {
         return el.querySelector('span.l1h825yc.atm_kd_19r6f69_24z95b.atm_kd_19r6f69_1xbvphn_1oszvuo.dir.dir-ltr')?.textContent;
       }, reviewHandle);
 
@@ -151,8 +151,8 @@ export async function scrapeAirbnbListing(url: string): Promise<any> {
     let captionHandles = await page.$$(IMG_CAPTION_SELECTOR);
     let captions = [];
 
-    for (let captionHandle of captionHandles) {
-      let caption = await page.evaluate((el) => el.innerText, captionHandle);
+    for (const captionHandle of captionHandles) {
+      const caption = await page.evaluate((el) => el.innerText, captionHandle);
       captions.push(caption);
     }
 
@@ -161,7 +161,7 @@ export async function scrapeAirbnbListing(url: string): Promise<any> {
       await page.click(EXIT_IMG_SELECTOR);
       await delay(1000);
       console.log('Closed Image Section');
-    } catch (err) {
+    } catch {
       console.log('Image selector failed. Retrying...');
       // Reload page and reattempt
       await page.goto(url);
@@ -185,8 +185,8 @@ export async function scrapeAirbnbListing(url: string): Promise<any> {
       captionHandles = await page.$$(IMG_CAPTION_SELECTOR);
       captions = [];
 
-      for (let captionHandle of captionHandles) {
-        let caption = await page.evaluate((el) => el.innerText, captionHandle);
+      for (const captionHandle of captionHandles) {
+        const caption = await page.evaluate((el) => el.innerText, captionHandle);
         captions.push(caption);
       }
     }
@@ -203,7 +203,7 @@ export async function scrapeAirbnbListing(url: string): Promise<any> {
     let amenityList = [];
     let missingAmenities = [];
 
-    for (let amenitySectionHandle of amenitySectionHandles) {
+    for (const amenitySectionHandle of amenitySectionHandles) {
       const amenityType = await page.evaluate((el) => {
         return el.querySelector('div._14li9j3g > h2')?.textContent;
       }, amenitySectionHandle);
@@ -212,7 +212,7 @@ export async function scrapeAirbnbListing(url: string): Promise<any> {
         const listItems = el.querySelectorAll('ul._2f5j8p > li');
         let amenities = [];
 
-        for (let li of listItems) {
+        for (const li of listItems) {
           amenities.push(li.textContent);
         }
 
