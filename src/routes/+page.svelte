@@ -5,6 +5,7 @@
   import Pricing from '$lib/components/Pricing.svelte';
   import GetAudit from '$lib/components/GetAudit.svelte';
   import ProjectStats from '$lib/components/ProjectStats.svelte';
+  import TextSection from '$lib/components/TextSection.svelte';
 </script>
 
 <svelte:head>
@@ -13,6 +14,7 @@
 
 <Hero />
 <ProjectStats />
+<TextSection />
 <p class="size-0" id="about"></p>
 <!-- 
   <SalePoints />
