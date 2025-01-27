@@ -3,7 +3,7 @@ import auditListing from '$lib/audit';
 
 export const actions: Actions = {
   audit: async ({ request }) => {
-    console.log("Auditing")
+    console.log('Auditing');
     const data = await request.formData();
     const url = data.get('bnburl');
 
@@ -12,7 +12,6 @@ export const actions: Actions = {
       return { success: false, error: 'Invalid URL format' };
     }
 
-    
     // Call the scraper function and log the result
     const result = await auditListing(url);
     console.log('Audit result:', result);
