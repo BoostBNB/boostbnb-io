@@ -6,6 +6,7 @@
   import GetAudit from '$lib/components/GetAudit.svelte';
   import ProjectStats from '$lib/components/ProjectStats.svelte';
   import TextSection from '$lib/components/TextSection.svelte';
+  import FeaturesSection from '$lib/components/FeaturesSection.svelte';
 </script>
 
 <svelte:head>
@@ -14,6 +15,7 @@
 
 <Hero />
 <ProjectStats />
+<FeaturesSection />
 <TextSection />
 <p class="size-0" id="about"></p>
 <!-- 
