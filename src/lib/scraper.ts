@@ -15,6 +15,7 @@ const RATING_SELECTOR =
   'div > div > div > a > div > div.a8jhwcl.atm_c8_vvn7el.atm_g3_k2d186.atm_fr_1vi102y.atm_9s_1txwivl.atm_ar_1bp4okc.atm_h_1h6ojuz.atm_cx_t94yts.atm_le_14y27yu.atm_c8_sz6sci__14195v1.atm_g3_17zsb9a__14195v1.atm_fr_kzfbxz__14195v1.atm_cx_1l7b3ar__14195v1.atm_le_1l7b3ar__14195v1.dir.dir-ltr > div:nth-child(2)';
 const REVIEW_COUNT_SELECTOR =
   'div > div > div > a > div > div.rddb4xa.atm_9s_1txwivl.atm_ar_1bp4okc.atm_h_1h6ojuz.atm_cx_t94yts.atm_le_yh40bf.atm_le_idpfg4__14195v1.atm_cx_idpfg4__14195v1.dir.dir-ltr > div.r16onr0j.atm_c8_vvn7el.atm_g3_k2d186.atm_fr_1vi102y.atm_gq_myb0kj.atm_vv_qvpr2i.atm_c8_sz6sci__14195v1.atm_g3_17zsb9a__14195v1.atm_fr_kzfbxz__14195v1.atm_gq_idpfg4__14195v1.dir.dir-ltr';
+const MIN_STAY_SELECTOR = 'div > div > div > div > div > section > div > div._t0tx82 > div > h3';
 const REVIEW_LIST_SELECTOR = 'div > section > div._88xxct > div > div > div._b7zir4z';
 const CLEAN_FEE_SELECTOR = 'div > div > div > div > div > div > div > div._1cvivhm > div > section > div._1n7cvm7 > div._14omvfj';
 const SHOW_PHOTOS_SELECTOR = 'div > div > div > div > div > div._z80d2i > div > div._ekor09 > button';
@@ -25,6 +26,8 @@ const EXIT_IMG_SELECTOR =
 const TRANSLATION_POPUP_CLOSE_SELECTOR =
   'div > div > section > div > div > div.p1psejvv.atm_9s_1bgihbq.dir.dir-ltr > div > div.c1lbtiq8.atm_mk_stnw88.atm_9s_1txwivl.atm_fq_1tcgj5g.atm_wq_kb7nvz.atm_tk_1tcgj5g.dir.dir-ltr > button';
 
+
+ 
 async function delay(ms: number) {
   await new Promise((r) => setTimeout(r, ms));
 }
@@ -62,6 +65,11 @@ export async function scrapeAirbnbListing(url: string): Promise<any> {
     // Nightly Rate
     const priceHandle = await page.$(PRICE_SELECTOR);
     const nightlyRate = priceHandle != null ? await page.evaluate((el) => el.innerText, priceHandle) : null;
+
+    
+    const minimumStayHandle = await page.$(MIN_STAY_SELECTOR);
+    const minmumStay = minimumStayHandle != null ? await page.evaluate((el) => el.innerText, minimumStayHandle) : null;
+    const minimumStay = 1;
 
     // Cleaning Fee
     let cleaningFee = null;
