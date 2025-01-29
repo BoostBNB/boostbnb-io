@@ -1,6 +1,7 @@
 <script lang="ts">
   interface Box {
-    icon: string;
+    src: string;
+    alt: string;
     title: string;
     text: string;
   }
@@ -9,7 +10,9 @@
 {#snippet box(input: Box)}
   <div class="flex-grow rounded-xl border-1 border-base-300 p-6">
     <h3 class="flex items-center space-x-2 font-bold">
-      <span>{input.icon}</span>
+      <div class="inline-block size-14 rounded-lg bg-black p-3 text-center text-white">
+        <img src={input.src} alt={input.alt} class="m-auto aspect-square w-11/12" />
+      </div>
       <span>{input.title}</span>
     </h3>
     <p class="mt-2 text-gray-600">{input.text}</p>
@@ -51,12 +54,14 @@
     <hr class="mx-auto my-2 w-0 opacity-0" />
     <div class="flex justify-center gap-2">
       {@render box({
-        icon: 'h',
+        src: '/icons/compass_line.svg',
+        alt: 'mingcute:compass_line',
         title: 'Our Mission',
         text: 'To empower individuals and teams with intuitive tools that simplify tasks and boost productivity every day.',
       })}
       {@render box({
-        icon: 'h',
+        src: '/icons/eye_line.svg',
+        alt: 'mingcute:eye_line',
         title: 'Our Vision',
         text: 'To redefine work efficiency by creating innovative solutions that enable seamless task management globally.',
       })}
