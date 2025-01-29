@@ -7,6 +7,7 @@
   import ProjectStats from '$lib/components/ProjectStats.svelte';
   import TextSection from '$lib/components/TextSection.svelte';
   import FeaturesSection from '$lib/components/FeaturesSection.svelte';
+  import OverviewSection from '$lib/components/OverviewSection.svelte';
 </script>
 
 <svelte:head>
@@ -17,6 +18,7 @@
 <ProjectStats />
 <FeaturesSection />
 <TextSection />
+<OverviewSection />
 <p class="size-0" id="about"></p>
 <!-- 
   <SalePoints />
