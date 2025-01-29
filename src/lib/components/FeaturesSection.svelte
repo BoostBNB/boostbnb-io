@@ -23,7 +23,7 @@
   </div>
 {/snippet}
 
-<section class="bg-white px-6 py-12 md:px-16">
+<section class="bg-base-100 px-6 py-12 md:px-16">
   <div class="mx-auto grid max-w-6xl gap-6 md:grid-cols-2">
     <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
       {@render box({
