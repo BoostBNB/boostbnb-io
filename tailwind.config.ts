@@ -1,16 +1,35 @@
-// @ts-expect-error code works fine, I just don't like the red line
 import tailwindcssMotion from 'tailwindcss-motion';
+import plugin from 'tailwindcss/plugin';
 import defaultTheme from 'tailwindcss/defaultTheme';
+import tailwindcssIntersect from 'tailwindcss-intersect';
 import daisyui from 'daisyui';
 import type { Config } from 'tailwindcss';
 
 export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
-  plugins: [daisyui, tailwindcssMotion],
+  plugins: [
+    daisyui,
+    tailwindcssMotion,
+    tailwindcssIntersect,
+    plugin(function ({ addUtilities }) {
+      addUtilities({
+        '.img-hover-scale': {
+          transition: 'transform 0.4s',
+          transform: 'scale(1)',
+          '&:hover': {
+            transform: 'scale(1.005)',
+          },
+        },
+      });
+    }),
+  ],
 
   // Tailwind Config
   theme: {
     extend: {
+      colors: {
+        nav: '#f9fbfd63',
+      },
       fontSize: {
         sm: '0.750rem',
         base: '1rem',
@@ -22,10 +41,17 @@ export default {
       },
       fontFamily: {
         sans: ['Funnel Sans', ...defaultTheme.fontFamily.sans],
+        header: ['Bricolage Grotesque'],
       },
       fontWeight: {
         normal: '400',
         bold: '700',
+      },
+      boxShadow: {
+        hero: '0 24px 48px -12px #0000002e',
+      },
+      borderWidth: {
+        1: '1px',
       },
     },
   },
@@ -41,6 +67,7 @@ export default {
           neutral: '#081647',
           'neutral-content': '#ffffff',
           'base-100': '#f9fbfd',
+          '--rounded-btn': '6px',
         },
       },
     ],

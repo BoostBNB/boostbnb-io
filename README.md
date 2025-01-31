@@ -1,4 +1,4 @@
-# BoostBNB.io Frontend
+# BoostBNB.io
 
 The source code for [boostbnb.io](https://boostbnb.io)
 
@@ -25,6 +25,16 @@ caused by using a different package manager will be ignored.
 3. **Build Prod Server or Run Dev Server**:<br>
    3.1. To start a production server, run `bun build` and `bun preview`<br>
    3.2. To start a development server with hot reloading, run `bun dev`
+
+## Connecting to Supabase
+
+To connect to Supabase, the main project DB, follow the stepsbelow
+
+1. Go to [https://supabase.com/dashboard/project/twvssnntiadxzaaeneyc](https://supabase.com/dashboard/project/twvssnntiadxzaaeneyc?showConnect=true).
+2. Click on 'App Frameworks'.
+3. Copy the contents of the example '.env.local'.
+4. Create an '.env.local' file on your machine, and paste the information you copied from step 3 into it.
+5. Start the server
 
 ## Commit Guide
 
