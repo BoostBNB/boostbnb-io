@@ -3,6 +3,11 @@ dist
 dist-ssr
 *.local
 
+# Unsupported Lockfiles
+yarn.lock
+package-lock.json
+pnpm-lock.yaml
+
 # Output
 .output
 .vercel
@@ -23,6 +28,7 @@ lerna-debug.log*
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
+*.code-workspace
 .idea
 .DS_Store
 *.suo
