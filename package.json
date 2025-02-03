@@ -36,6 +36,11 @@
     "vite": "^5.4.11"
   },
   "dependencies": {
+    "node-fetch": "^3.3.2",
+    "openai": "^4.79.4",
+    "puppeteer": "^24.1.0",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
     "@prettier/plugin-xml": "^3.4.1",
     "@supabase/ssr": "^0.5.2",
     "@supabase/supabase-js": "^2.48.0",

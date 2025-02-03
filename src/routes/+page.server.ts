@@ -1,20 +1,25 @@
 import type { Actions } from './$types';
-import scrapeListing from '$lib/scraper';
+import auditListing from '$lib/audit';
 
 export const actions: Actions = {
-  scrape: async ({ request }) => {
+  audit: async ({ request }) => {
+    console.log('Auditing');
     const data = await request.formData();
     const url = data.get('bnburl');
+    const email = data.get('email');
 
     // Validate the URL
     if (!url || typeof url !== 'string') {
       return { success: false, error: 'Invalid URL format' };
     }
 
-    
+    if (!email || typeof email !== 'string') {
+      return { success: false, error: 'Enter a valid email' };
+    }
+
     // Call the scraper function and log the result
-    const result = await scrapeListing(url);
-    console.log('Scraped result:', result);
+    const result = await auditListing(url, email);
+    console.log('Audit result:', result);
 
     return { success: true, result };
   },
