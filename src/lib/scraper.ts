@@ -26,8 +26,6 @@ const EXIT_IMG_SELECTOR =
 const TRANSLATION_POPUP_CLOSE_SELECTOR =
   'div > div > section > div > div > div.p1psejvv.atm_9s_1bgihbq.dir.dir-ltr > div > div.c1lbtiq8.atm_mk_stnw88.atm_9s_1txwivl.atm_fq_1tcgj5g.atm_wq_kb7nvz.atm_tk_1tcgj5g.dir.dir-ltr > button';
 
-
- 
 async function delay(ms: number) {
   await new Promise((r) => setTimeout(r, ms));
 }
@@ -66,7 +64,6 @@ export async function scrapeAirbnbListing(url: string): Promise<any> {
     const priceHandle = await page.$(PRICE_SELECTOR);
     const nightlyRate = priceHandle != null ? await page.evaluate((el) => el.innerText, priceHandle) : null;
 
-    
     const minimumStayHandle = await page.$(MIN_STAY_SELECTOR);
     const minmumStay = minimumStayHandle != null ? await page.evaluate((el) => el.innerText, minimumStayHandle) : null;
     const minimumStay = 1;

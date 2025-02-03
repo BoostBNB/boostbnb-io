@@ -2,7 +2,6 @@ import { scrapeAirbnbListing } from './scraper';
 import { askChatGPT } from './chat';
 
 export default async function auditListing(url: string, email: string): Promise<string> {
-
   //regex for email validation
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -16,7 +15,7 @@ export default async function auditListing(url: string, email: string): Promise<
   if (!urlRegex.test(url)) {
     throw new Error('Invalid URL format');
   }
-  
+
   try {
     // Scrape the listing details
     const listing_details = await scrapeAirbnbListing(url);
