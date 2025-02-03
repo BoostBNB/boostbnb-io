@@ -2,9 +2,16 @@
   import '../app.css';
   import Navbar from '$lib/layouts/Navbar.svelte';
   import Footer from '$lib/layouts/Footer.svelte';
-  let { children } = $props();
+  import Observer from '$lib/layouts/Observer.svelte';
+  import type { Snippet } from 'svelte';
+  interface props {
+    children: Snippet<[]>;
+  }
+  const { children }: props = $props();
 </script>
 
-<Navbar />
-{@render children()}
-<Footer />
+<Observer>
+  <Navbar />
+  {@render children()}
+  <Footer />
+</Observer>
