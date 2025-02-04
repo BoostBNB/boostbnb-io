@@ -1,7 +1,10 @@
 <script lang="ts">
+  import { supabase } from '$lib/db';
+
   interface props {
     disp: string;
   }
+
   const { disp }: props = $props();
   let apbv: string = disp ? disp.charAt(0).toUpperCase() : '';
 </script>
@@ -29,7 +32,16 @@
         <a>Profile</a>
       </li>
       <li><a>Settings</a></li>
-      <li><a>Logout</a></li>
+      <li>
+        <button
+          onclick={async () => {
+            console.log('Ending Session');
+            let { error } = await supabase.auth.signOut({ scope: 'local' });
+            if (error) console.error(error);
+            window.location.href = '/';
+          }}>Logout</button
+        >
+      </li>
     </ul>
   </div>
   <!-- /dropdown -->
