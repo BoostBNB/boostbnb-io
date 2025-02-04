@@ -1,1 +1,5 @@
-// place files you want to import through the `$lib` alias in this folder.
+import type { Session, SupabaseClient } from '@supabase/supabase-js';
+export interface Data {
+    supabase: SupabaseClient<any, 'public', any>;
+    session: Session | null;
+  }
