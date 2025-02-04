@@ -1,7 +1,7 @@
 <script lang="ts">
   interface props {
     disp: string;
-    logout: Function;
+    logout: () => void;
   }
 
   const { disp, logout }: props = $props();
