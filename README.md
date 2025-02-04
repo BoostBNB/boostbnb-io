@@ -32,9 +32,10 @@ To connect to Supabase, the main project DB, follow the stepsbelow
 
 1. Go to [https://supabase.com/dashboard/project/twvssnntiadxzaaeneyc](https://supabase.com/dashboard/project/twvssnntiadxzaaeneyc?showConnect=true).
 2. Click on 'App Frameworks'.
-3. Copy the contents of the example '.env.local'.
-4. Create an '.env.local' file on your machine, and paste the information you copied from step 3 into it.
-5. Start the server
+3. Select 'SvelteKit' under the 'Framework' dropdown.
+4. Copy the contents of the example '.env.local'.
+5. Create an '.env.local' file on your machine, and paste the information you copied from step 3 into it.
+6. Start the server
 
 ## Commit Guide
 
