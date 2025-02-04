@@ -6,4 +6,4 @@
   <title>BoostBNB | Transactions</title>
 </svelte:head>
 
-<Shell>Transactions will be shown here</Shell>
+Transactions will be shown here

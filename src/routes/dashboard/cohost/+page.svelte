@@ -6,4 +6,4 @@
   <title>BoostBNB | Cohost AI</title>
 </svelte:head>
 
-<Shell>Cohost AI will be shown here</Shell>
+Cohost AI will be shown here
