@@ -7,7 +7,7 @@ export const load: PageServerLoad = async ({ url, locals: { safeGetSession } }) 
 
   // if the user is already logged in return them to the home page
   if (session) {
-    redirect(303, '/');
+    redirect(303, '/dashboard');
   }
 
   return { url: url.origin };
@@ -29,12 +29,9 @@ export const actions: Actions = {
       return fail(400, { errors: { email: 'Please enter a valid email address' }, email });
     }
 
-    const { data, error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
-      options: {
-        emailRedirectTo: 'http://localhost:5173/log-in',
-      },
     });
 
     if (error) {
@@ -47,7 +44,7 @@ export const actions: Actions = {
 
     return {
       success: true,
-      message: 'Please check your email to finish setting up your account.',
+      message: 'Creating account...',
     };
   },
 };
