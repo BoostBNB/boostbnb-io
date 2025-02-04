@@ -1,18 +1,17 @@
 <script>
-  import Shell from "$lib/components/dashboard/Shell.svelte";
+  import Shell from '$lib/components/dashboard/Shell.svelte';
 
-    let { data, children } = $props()
-    let { supabase } = $derived(data)
-  
-    const logout = async () => {
-      const { error } = await supabase.auth.signOut()
-      if (error) {
-        console.error(error)
-      }
+  let { data, children } = $props();
+  let { supabase } = $derived(data);
+
+  const logout = async () => {
+    const { error } = await supabase.auth.signOut();
+    if (error) {
+      console.error(error);
     }
-  </script>
-  
+  };
+</script>
 
-    <Shell>
-        {@render children()}
-    </Shell>
+<Shell>
+  {@render children()}
+</Shell>
