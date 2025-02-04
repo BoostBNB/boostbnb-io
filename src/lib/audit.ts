@@ -11,7 +11,7 @@ export default async function auditListing(url: string, email: string): Promise<
   }
 
   //regex for url validation must be airbnb.com/rooms
-  const urlRegex = /^https:\/\/www\.airbnb\.com\/rooms\/[0-9]+$/;
+  const urlRegex = /^https:\/\/www\.airbnb\.com\/rooms\/.+$/;
 
   if (!urlRegex.test(url)) {
     throw new Error('Invalid URL format');
