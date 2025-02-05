@@ -1,6 +1,6 @@
 import { scrapeAirbnbListing } from './scraper';
 import { askChatGPT } from './chat';
-import { supabase } from "$lib/db/index";
+import { supabase } from '$lib/db/index';
 
 export default async function auditListing(url: string, email: string): Promise<string> {
   //regex for email validation
@@ -18,15 +18,14 @@ export default async function auditListing(url: string, email: string): Promise<
   }
 
   // Adds Email To The Database
-  const { error } = await supabase.from("emails").insert({ email });
+  const { error } = await supabase.from('emails').insert({ email });
 
   if (error) {
     if (error.code == '23505') {
-      console.log("Warning: User entered a duplicate email");
-    }
-    else {
-      console.error(error)
-      throw new Error("Failed to insert new email into the database");
+      console.log('Warning: User entered a duplicate email');
+    } else {
+      console.error(error);
+      throw new Error('Failed to insert new email into the database');
     }
   }
 

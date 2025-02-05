@@ -1,16 +1,23 @@
 // src/routes/+page.server.ts
 import { fail, redirect } from '@sveltejs/kit';
-import type { Actions, PageServerLoad } from './$types';
+import type { Actions } from './$types';
+import { superValidate, message } from 'sveltekit-superforms';
+import { zod } from 'sveltekit-superforms/adapters';
+import { z } from 'zod';
 
-export const load: PageServerLoad = async ({ url, locals: { safeGetSession } }) => {
+const schema = z.object({
+  email: z.string().email(),
+  password: z.string(),
+});
+
+export const load = async ({ locals: { safeGetSession } }) => {
+  // If the user is signed in, redirect to /
   const { session } = await safeGetSession();
+  if (session) redirect(303, '/');
 
-  // if the user is already logged in return them to the home page
-  if (session) {
-    redirect(303, '/');
-  }
-
-  return { url: url.origin };
+  // Return the form to the page for validation
+  const form = await superValidate(zod(schema));
+  return { form };
 };
 
 export const actions: Actions = {
@@ -19,32 +26,28 @@ export const actions: Actions = {
       request,
       locals: { supabase },
     } = event;
-    const formData = await request.formData();
-    const email = formData.get('email') as string;
-    const password = formData.get('password') as string;
-    // eslint-disable-next-line no-useless-escape
-    const validEmail = /^[\w-\.+]+@([\w-]+\.)+[\w-]{2,8}$/.test(email);
 
-    if (!validEmail) {
-      return fail(400, { errors: { email: 'Please enter a valid email address' }, email });
+    const form = await superValidate(request, zod(schema));
+    const email = form.data.email;
+    const password = form.data.password;
+
+    if (!form.valid) {
+      return fail(400, { form });
     }
 
-    const { data, error } = await supabase.auth.signInWithPassword({
+    const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
 
     if (error) {
-      return fail(400, {
+      return fail(500, {
         success: false,
         email,
         message: `There was an issue, Please contact support.`,
+        form,
       });
     }
-
-    return {
-      success: true,
-      message: 'Creating account...',
-    };
+    return message(form, 'Signing in...');
   },
 };
