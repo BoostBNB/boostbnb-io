@@ -1,6 +1,5 @@
 <script lang="ts">
   import { superForm } from 'sveltekit-superforms';
-
   let { data } = $props();
   const { form, errors, constraints, message, enhance } = superForm(data.form);
 </script>
