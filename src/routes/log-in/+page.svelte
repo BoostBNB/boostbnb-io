@@ -1,6 +1,5 @@
 <script lang="ts">
   import { superForm } from 'sveltekit-superforms';
-  import SuperDebug from 'sveltekit-superforms';
 
   let { data } = $props();
   const { form, errors, constraints, message, enhance } = superForm(data.form);
@@ -40,7 +39,6 @@
       {#if $message}<h3 class="text-success">{$message}</h3>{/if}
       <button class="btn btn-primary" type="submit">Log In</button>
       <p class="mt-2">Don't have an account? <a href="/sign-up" class="link">Sign Up</a>.</p>
-      <SuperDebug data={$form} />
     </form>
   </div>
 </div>

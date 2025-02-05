@@ -1,6 +1,5 @@
 <script>
   import { superForm } from 'sveltekit-superforms';
-  import SuperDebug from 'sveltekit-superforms';
   let { data } = $props();
   const { form, errors, constraints, message, enhance } = superForm(data.form);
 
@@ -32,5 +31,3 @@
     <button class="btn btn-primary w-full md:w-1/4">Optimize now</button>
   </form>
 </div>
-
-<SuperDebug data={$form} />
