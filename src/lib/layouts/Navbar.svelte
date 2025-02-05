@@ -1,8 +1,15 @@
 <script lang="ts">
+  import type { Session } from '@supabase/supabase-js';
   import { onMount } from 'svelte';
   const aboutLink: string = '/#about';
   const pricingLink: string = '/#pricing';
   const loginLink: string = '/log-in';
+
+  interface props {
+    session: Session | null;
+  }
+
+  const { session }: props = $props();
 
   onMount(() => {
     addEventListener('scroll', () => {
@@ -38,7 +45,7 @@
     <ul tabindex="-1" class="menu dropdown-content z-[101] w-56 gap-2 rounded-box bg-base-200 p-6 shadow">
       <li><a href={aboutLink}>About</a></li>
       <li><a href={pricingLink}>Pricing</a></li>
-      <li><a href={loginLink} class="btn btn-primary btn-sm">Log in</a></li>
+      <li><a href={loginLink} class="btn btn-primary btn-sm">{session ? 'Dashboard' : 'Log In'}</a></li>
     </ul>
   </div>
 
@@ -46,6 +53,6 @@
   <ul class="menu hidden gap-2 sm:menu-horizontal">
     <li><a href={aboutLink}>About</a></li>
     <li><a href={pricingLink}>Pricing</a></li>
-    <li><a class="btn btn-primary btn-sm" href={loginLink}>Log in</a></li>
+    <li><a class="btn btn-primary btn-sm" href={loginLink}>{session ? 'Dashboard' : 'Log In'}</a></li>
   </ul>
 </nav>
