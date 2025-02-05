@@ -7,7 +7,7 @@
   </div>
 {/snippet}
 
-<div class="mt-8 flex w-full flex-col items-center gap-8 bg-base-300 pb-16 pt-8" id="pricing">
+<div class="mt-8 flex w-full flex-col items-center gap-8 bg-gradient-to-b from-transparent to-base-300 pb-16 pt-8" id="pricing">
   <div class="flex flex-col gap-2 text-center">
     <h1 class="text-3xl font-bold">Pricing</h1>
     <span class="mx-3">Whatever your status, our offers evolve according to your needs</span>
