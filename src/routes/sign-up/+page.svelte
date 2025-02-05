@@ -6,7 +6,7 @@
 </script>
 
 <svelte:head>
-  <title>Sign Up</title>
+  <title>BoostBNB | Sign Up</title>
 </svelte:head>
 
 <div class="h-screen w-screen bg-gradient-to-br from-white to-blue-200">
