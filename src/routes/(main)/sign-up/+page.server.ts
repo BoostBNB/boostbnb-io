@@ -20,6 +20,7 @@ export const actions: Actions = {
       return fail(400, { errors: { email: 'Please enter a valid email address' }, email });
     }
 
+    // ✅ Step 1: Sign up the user
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
@@ -34,6 +35,17 @@ export const actions: Actions = {
         email,
         message: `There was an issue, Please contact support.`,
       });
+    }
+
+    // ✅ Step 2: Ensure the user exists before adding them to `user_data`
+    if (data.user) {
+      const { error: insertError } = await supabase.from('user_data').insert([
+        { user_id: data.user.id, listings: [] } // ✅ Empty array for listings
+      ]);
+
+      if (insertError) {
+        console.error("Insert error:", insertError.message);
+      }
     }
 
     return {
