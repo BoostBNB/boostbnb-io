@@ -1,30 +1,21 @@
-// src/routes/+page.server.ts
 import { fail, redirect } from '@sveltejs/kit';
-import type { Actions, PageServerLoad } from './$types';
-
-export const load: PageServerLoad = async ({ url, locals: { safeGetSession } }) => {
-  const { session } = await safeGetSession();
-
-  // if the user is already logged in return them to the home page
-  if (session) {
-    redirect(303, '/dashboard');
-  }
-
-  return { url: url.origin };
-};
+import type { Actions } from './$types';
 
 export const actions: Actions = {
   default: async (event) => {
     const {
       request,
       locals: { supabase },
+    }: { 
+      request: Request; 
+      locals: { supabase: any } 
     } = event;
+
     const formData = await request.formData();
     const email = formData.get('email') as string;
     const password = formData.get('password') as string;
-    // eslint-disable-next-line no-useless-escape
-    const validEmail = /^[\w-\.+]+@([\w-]+\.)+[\w-]{2,8}$/.test(email);
 
+    const validEmail = /^[\w-\.+]+@([\w-]+\.)+[\w-]{2,8}$/.test(email);
     if (!validEmail) {
       return fail(400, { errors: { email: 'Please enter a valid email address' }, email });
     }

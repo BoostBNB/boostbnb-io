@@ -12,6 +12,10 @@
       console.error(error);
     }
   };
+
+
+  
+  
 </script>
 
 <svelte:head>
@@ -21,4 +25,6 @@
 <div class="grid grid-cols-12 grid-rows-[min-content] gap-y-12 p-4 lg:gap-x-12 lg:p-10">
   <Header disp={data.session?.user.email ?? 'U'} {logout} />
   <Stats />
+  
 </div>
+

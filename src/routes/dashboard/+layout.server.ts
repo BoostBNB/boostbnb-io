@@ -1,11 +1,22 @@
 import type { LayoutServerLoad } from './$types';
 
-export const load: LayoutServerLoad = async ({ locals: { safeGetSession }, cookies }) => {
-  const { session, user } = await safeGetSession();
+export const load: LayoutServerLoad = async ({ locals }) => {
+  const { user } = locals.session || {};
+  if (!user) {
+    return { listings: [] }; // Return an empty array if user is not authenticated
+  }
 
-  return {
-    session,
-    user,
-    cookies: cookies.getAll(),
-  };
+  const { data, error } = await locals.supabase
+    .from('user_data')
+    .select('listings')
+    .eq('user_id', user.id)
+    .single();
+
+  if (error) {
+    console.error("Error fetching listings:", error.message);
+    return { listings: [] };
+  }
+
+  
+  return { listings: data.listings || [] };
 };
