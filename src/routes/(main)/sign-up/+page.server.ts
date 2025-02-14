@@ -6,9 +6,9 @@ export const actions: Actions = {
     const {
       request,
       locals: { supabase },
-    }: { 
-      request: Request; 
-      locals: { supabase: any } 
+    }: {
+      request: Request;
+      locals: { supabase: any };
     } = event;
 
     const formData = await request.formData();
@@ -40,11 +40,11 @@ export const actions: Actions = {
     // ✅ Step 2: Ensure the user exists before adding them to `user_data`
     if (data.user) {
       const { error: insertError } = await supabase.from('user_data').insert([
-        { user_id: data.user.id, listings: [] } // ✅ Empty array for listings
+        { user_id: data.user.id, listings: [] }, // ✅ Empty array for listings
       ]);
 
       if (insertError) {
-        console.error("Insert error:", insertError.message);
+        console.error('Insert error:', insertError.message);
       }
     }
 

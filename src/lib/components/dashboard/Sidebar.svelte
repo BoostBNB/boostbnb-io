@@ -19,22 +19,23 @@
             Listings
           </summary>
           <ul>
-            <li><a>All Listings</a></li>
-            <li><a>Add New</a></li>
+            <li><a href="/dashboard/listing/all">All Listings</a></li>
+            <li><a href="/dashboard/listing/new">Add New</a></li>
           </ul>
         </details>
       </li>
       <li>
-        <a href="/dashboard/transactions">
-          <svg data-src="https://unpkg.com/heroicons/20/solid/credit-card.svg" class="h-5 w-5"></svg>
-          Transactions
-        </a>
-      </li>
-      <li>
-        <a href="/dashboard/cohost">
-          <svg data-src="https://unpkg.com/heroicons/20/solid/sparkles.svg" class="h-5 w-5"></svg>
-          Cohost AI
-        </a>
+        <details>
+          <summary>
+            <svg data-src="https://unpkg.com/heroicons/20/solid/sparkles.svg" class="h-5 w-5"></svg>
+            Tools
+          </summary>
+          <ul>
+            <li><a href="/dashboard/chat"> Cohost AI </a></li>
+            <li><a href="/dashboard/optimize-listing">Listing Optimizer</a></li>
+            <li><a href="/dashboard/optimize-image">Image Optimizer</a></li>
+          </ul>
+        </details>
       </li>
       <li>
         <details>
@@ -43,26 +44,8 @@
             Settings
           </summary>
           <ul>
-            <li><a>General</a></li>
-            <li><a>Themes</a></li>
-            <li><a>Routes</a></li>
-            <li><a>Comments</a></li>
-            <li><a>Media</a></li>
-            <li><a>Roles</a></li>
-            <li><a>Merchants</a></li>
-            <li>
-              <a>Tools</a>
-              <ul>
-                <li><a>Files</a></li>
-                <li><a>Scripts</a></li>
-                <li><a>Suggestions</a></li>
-              </ul>
-            </li>
-            <li><a>Databases</a></li>
-            <li><a>Gateways</a></li>
-            <li><a>Plugins</a></li>
-            <li><a>API</a></li>
-            <li><a>Support</a></li>
+            <li><a>Account</a></li>
+            <li><a>Transactions</a></li>
           </ul>
         </details>
       </li>
