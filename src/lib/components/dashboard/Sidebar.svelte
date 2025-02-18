@@ -44,8 +44,8 @@
             Settings
           </summary>
           <ul>
-            <li><a>Account</a></li>
-            <li><a>Transactions</a></li>
+            <li><a href="##">Account</a></li>
+            <li><a href="##">Transactions</a></li>
           </ul>
         </details>
       </li>

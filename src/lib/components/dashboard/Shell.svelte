@@ -13,10 +13,8 @@
 
 <div class="drawer min-h-screen bg-base-200 lg:drawer-open">
   <input id="my-drawer" type="checkbox" class="drawer-toggle" />
-  <svelte:boundary>
-    <main class="drawer-content">
-      {@render children()}
-    </main>
-  </svelte:boundary>
+  <main class="drawer-content">
+    {@render children()}
+  </main>
   <Sidebar />
 </div>

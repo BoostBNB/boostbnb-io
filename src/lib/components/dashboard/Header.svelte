@@ -28,9 +28,9 @@
     <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
     <ul tabindex="0" class="menu dropdown-content mt-3 w-52 rounded-box bg-base-100 p-2 shadow-2xl">
       <li>
-        <a>Profile</a>
+        <a href="##">Profile</a>
       </li>
-      <li><a>Settings</a></li>
+      <li><a href="##">Settings</a></li>
       <li>
         <button onclick={() => logout()}>Log Out</button>
       </li>
