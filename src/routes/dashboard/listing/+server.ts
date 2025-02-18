@@ -31,8 +31,9 @@ export const POST: RequestHandler = async ({ request, locals }) => {
     .select();
 
   if (error) {
-    if (error.code === '23505') { // Duplicate entry (violates UNIQUE constraint)
-      return json({ error: "This listing already exists." }, { status: 400 });
+    if (error.code === '23505') {
+      // Duplicate entry (violates UNIQUE constraint)
+      return json({ error: 'This listing already exists.' }, { status: 400 });
     }
     return json({ error: error.message }, { status: 400 });
   }
