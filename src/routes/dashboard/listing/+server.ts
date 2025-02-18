@@ -1,45 +1,33 @@
 import { json } from '@sveltejs/kit';
 import { supabase } from '$lib/db/index';
 import type { RequestHandler } from './$types';
+import { scrapeAirbnbListing } from '$lib/scraper'; // Import the function
 
-// ✅ GET: Retrieve all listings for the user
-export const GET: RequestHandler = async ({ locals }) => {
-  const { user } = locals.session || {};
-  if (!user) {
-    return json({ error: 'Unauthorized' }, { status: 401 });
-  }
-
-  const { data, error } = await supabase
-    .from('listings')
-    .select('id, url, data, time')
-    .eq('user_id', user.id)
-    .order('time', { ascending: false });
-
-  if (error) {
-    return json({ error: error.message }, { status: 400 });
-  }
-
-  return json({ success: true, listings: data });
-};
-
-// ✅ POST: Add a new listing (if it doesn’t exist)
 export const POST: RequestHandler = async ({ request, locals }) => {
   const { user } = locals.session || {};
   if (!user) {
     return json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const body = await request.json();
-  const url = body.url?.trim(); // ✅ Ensure `url` is a valid string
+  const { url } = await request.json();
 
-  if (!url) {
+  if (!url || typeof url !== "string" || url.trim() === "") {
     return json({ error: "URL is required." }, { status: 400 });
   }
 
-  // ✅ Try inserting a new listing, prevent duplicates (handled by UNIQUE INDEX)
+
+  let scrapedData;
+  try {
+    scrapedData = await scrapeAirbnbListing(url);
+  } catch (error) {
+    console.error("Scraping failed:", error);
+    return json({ error: "Failed to scrape listing data." }, { status: 500 });
+  }
+
+ 
   const { data, error } = await supabase
     .from('listings')
-    .insert([{ user_id: user.id, url, data: {} }]) // ✅ Ensure URL is valid
+    .insert([{ user_id: user.id, url, data: scrapedData }]) //  Save scraped JSON
     .select();
 
   if (error) {
@@ -52,8 +40,32 @@ export const POST: RequestHandler = async ({ request, locals }) => {
   return json({ success: true, data });
 };
 
+export const GET: RequestHandler = async ({ locals }) => {
+  const { user } = locals.session || {};
+  if (!user) {
+    return json({ error: 'Unauthorized' }, { status: 401 });
+  }
 
-// ✅ DELETE: Remove a listing by URL instead of ID
+  
+  const { data, error } = await supabase
+    .from('listings')
+    .select('url, data') // Fetch only relevant fields
+    .eq('user_id', user.id)
+    .order('time', { ascending: false });
+
+  if (error) {
+    return json({ error: error.message }, { status: 400 });
+  }
+
+  
+  const listings = data.map(listing => ({
+    url: listing.url,
+    data: listing.data || {} // Ensure data is an object, not null
+  }));
+
+  return json({ success: true, listings });
+};
+
 export const DELETE: RequestHandler = async ({ request, locals }) => {
   const { user } = locals.session || {};
   if (!user) {
@@ -62,7 +74,11 @@ export const DELETE: RequestHandler = async ({ request, locals }) => {
 
   const { url } = await request.json();
 
-  // ✅ Delete the listing by URL only if it belongs to the user
+  if (!url || typeof url !== "string" || url.trim() === "") {
+    return json({ error: "URL is required." }, { status: 400 });
+  }
+
+
   const { error } = await supabase
     .from('listings')
     .delete()

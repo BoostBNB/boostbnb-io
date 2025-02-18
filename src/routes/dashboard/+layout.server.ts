@@ -6,12 +6,12 @@ export const load: LayoutServerLoad = async ({ locals }) => {
     return { listings: [] }; // Return an empty array if user is not authenticated
   }
 
-  const { data, error } = await locals.supabase.from('user_data').select('listings').eq('user_id', user.id).single();
+  const { data, error } = await locals.supabase.from('listings').select('url, data').eq('user_id', user.id).single();
 
   if (error) {
     console.error('Error fetching listings:', error.message);
     return { listings: [] };
   }
 
-  return { listings: data.listings || [] };
+  return { listings: data || [] };
 };
