@@ -9,11 +9,7 @@ export const GET: RequestHandler = async ({ locals }) => {
     return json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const { data, error } = await supabase
-    .from('listings')
-    .select('id, url, data, time')
-    .eq('user_id', user.id)
-    .order('time', { ascending: false });
+  const { data, error } = await supabase.from('listings').select('id, url, data, time').eq('user_id', user.id).order('time', { ascending: false });
 
   if (error) {
     return json({ error: error.message }, { status: 400 });
@@ -33,7 +29,7 @@ export const POST: RequestHandler = async ({ request, locals }) => {
   const url = body.url?.trim(); // ✅ Ensure `url` is a valid string
 
   if (!url) {
-    return json({ error: "URL is required." }, { status: 400 });
+    return json({ error: 'URL is required.' }, { status: 400 });
   }
 
   // ✅ Try inserting a new listing, prevent duplicates (handled by UNIQUE INDEX)
@@ -43,15 +39,15 @@ export const POST: RequestHandler = async ({ request, locals }) => {
     .select();
 
   if (error) {
-    if (error.code === '23505') { // Duplicate entry (violates UNIQUE constraint)
-      return json({ error: "This listing already exists." }, { status: 400 });
+    if (error.code === '23505') {
+      // Duplicate entry (violates UNIQUE constraint)
+      return json({ error: 'This listing already exists.' }, { status: 400 });
     }
     return json({ error: error.message }, { status: 400 });
   }
 
   return json({ success: true, data });
 };
-
 
 // ✅ DELETE: Remove a listing by URL instead of ID
 export const DELETE: RequestHandler = async ({ request, locals }) => {
@@ -63,11 +59,7 @@ export const DELETE: RequestHandler = async ({ request, locals }) => {
   const { url } = await request.json();
 
   // ✅ Delete the listing by URL only if it belongs to the user
-  const { error } = await supabase
-    .from('listings')
-    .delete()
-    .eq('user_id', user.id)
-    .eq('url', url);
+  const { error } = await supabase.from('listings').delete().eq('user_id', user.id).eq('url', url);
 
   if (error) {
     return json({ error: error.message }, { status: 400 });
