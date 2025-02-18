@@ -15,7 +15,7 @@ const RATING_SELECTOR =
   'div > div > div > a > div > div.a8jhwcl.atm_c8_vvn7el.atm_g3_k2d186.atm_fr_1vi102y.atm_9s_1txwivl.atm_ar_1bp4okc.atm_h_1h6ojuz.atm_cx_t94yts.atm_le_14y27yu.atm_c8_sz6sci__14195v1.atm_g3_17zsb9a__14195v1.atm_fr_kzfbxz__14195v1.atm_cx_1l7b3ar__14195v1.atm_le_1l7b3ar__14195v1.dir.dir-ltr > div:nth-child(2)';
 const REVIEW_COUNT_SELECTOR =
   'div > div > div > a > div > div.rddb4xa.atm_9s_1txwivl.atm_ar_1bp4okc.atm_h_1h6ojuz.atm_cx_t94yts.atm_le_yh40bf.atm_le_idpfg4__14195v1.atm_cx_idpfg4__14195v1.dir.dir-ltr > div.r16onr0j.atm_c8_vvn7el.atm_g3_k2d186.atm_fr_1vi102y.atm_gq_myb0kj.atm_vv_qvpr2i.atm_c8_sz6sci__14195v1.atm_g3_17zsb9a__14195v1.atm_fr_kzfbxz__14195v1.atm_gq_idpfg4__14195v1.dir.dir-ltr';
-const MIN_STAY_SELECTOR = 'div > div > div > div > div > section > div > div._t0tx82 > div > h3';
+// const MIN_STAY_SELECTOR = 'div > div > div > div > div > section > div > div._t0tx82 > div > h3';
 const REVIEW_LIST_SELECTOR = 'div > section > div._88xxct > div > div > div._b7zir4z';
 const CLEAN_FEE_SELECTOR = 'div > div > div > div > div > div > div > div._1cvivhm > div > section > div._1n7cvm7 > div._14omvfj';
 const SHOW_PHOTOS_SELECTOR = 'div > div > div > div > div > div._z80d2i > div > div._ekor09 > button';
@@ -30,7 +30,7 @@ async function delay(ms: number) {
   await new Promise((r) => setTimeout(r, ms));
 }
 
-export async function scrapeAirbnbListing(url: string): Promise<any> {
+export async function scrapeAirbnbListing(url: string) {
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
 
@@ -64,9 +64,9 @@ export async function scrapeAirbnbListing(url: string): Promise<any> {
     const priceHandle = await page.$(PRICE_SELECTOR);
     const nightlyRate = priceHandle != null ? await page.evaluate((el) => el.innerText, priceHandle) : null;
 
-    const minimumStayHandle = await page.$(MIN_STAY_SELECTOR);
-    const minmumStay = minimumStayHandle != null ? await page.evaluate((el) => el.innerText, minimumStayHandle) : null;
-    const minimumStay = 1;
+    // const minimumStayHandle = await page.$(MIN_STAY_SELECTOR);
+    // const minmumStay = minimumStayHandle != null ? await page.evaluate((el) => el.innerText, minimumStayHandle) : null;
+    // const minimumStay = 1;
 
     // Cleaning Fee
     let cleaningFee = null;
@@ -90,9 +90,9 @@ export async function scrapeAirbnbListing(url: string): Promise<any> {
     // Room Info (Guests, Bedrooms, Beds, Baths, etc)
     const propertyInfoListHandle = await page.$$(ROOM_INFO_SELECTOR);
     let guestCapacity = null;
-    let bedrooms = null;
-    let beds = null;
-    let bath = null;
+    // let bedrooms = null;
+    // let beds = null;
+    // let bath = null;
 
     for (const propertyInfoHandle of propertyInfoListHandle) {
       const infoPoint = await page.evaluate((el) => el.innerText, propertyInfoHandle);
@@ -100,17 +100,17 @@ export async function scrapeAirbnbListing(url: string): Promise<any> {
       if (infoPoint.search('guest') != -1) {
         guestCapacity = infoPoint;
       } else if (infoPoint.search('bedrooms') != -1) {
-        bedrooms = infoPoint;
+        // bedrooms = infoPoint;
       } else if (infoPoint.search('beds') != -1) {
-        beds = infoPoint;
+        // beds = infoPoint;
       } else if (infoPoint.search('bath') != -1) {
-        bath = infoPoint;
+        // bath = infoPoint;
       }
     }
 
     // Room Perks
     const perkHandles = await page.$$(PERK_LIST_SELECTOR);
-    let roomPerks = [];
+    const roomPerks = [];
 
     for (const perkHandle of perkHandles) {
       const perkTitle = await page.evaluate((el) => el.querySelector('div._llvyuq')?.textContent, perkHandle);
@@ -205,8 +205,8 @@ export async function scrapeAirbnbListing(url: string): Promise<any> {
     await page.waitForSelector(AMENITIES_LIST_SELECTOR, { visible: true });
 
     const amenitySectionHandles = await page.$$(AMENITIES_LIST_SELECTOR);
-    let amenityList = [];
-    let missingAmenities = [];
+    const amenityList = [];
+    const missingAmenities = [];
 
     for (const amenitySectionHandle of amenitySectionHandles) {
       const amenityType = await page.evaluate((el) => {
@@ -215,7 +215,7 @@ export async function scrapeAirbnbListing(url: string): Promise<any> {
 
       const amenities = await page.evaluate((el) => {
         const listItems = el.querySelectorAll('ul._2f5j8p > li');
-        let amenities = [];
+        const amenities = [];
 
         for (const li of listItems) {
           amenities.push(li.textContent);
