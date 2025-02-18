@@ -11,20 +11,18 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 
   const { url } = await request.json();
 
-  if (!url || typeof url !== "string" || url.trim() === "") {
-    return json({ error: "URL is required." }, { status: 400 });
+  if (!url || typeof url !== 'string' || url.trim() === '') {
+    return json({ error: 'URL is required.' }, { status: 400 });
   }
-
 
   let scrapedData;
   try {
     scrapedData = await scrapeAirbnbListing(url);
   } catch (error) {
-    console.error("Scraping failed:", error);
-    return json({ error: "Failed to scrape listing data." }, { status: 500 });
+    console.error('Scraping failed:', error);
+    return json({ error: 'Failed to scrape listing data.' }, { status: 500 });
   }
 
- 
   const { data, error } = await supabase
     .from('listings')
     .insert([{ user_id: user.id, url, data: scrapedData }]) //  Save scraped JSON
@@ -47,7 +45,6 @@ export const GET: RequestHandler = async ({ locals }) => {
     return json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  
   const { data, error } = await supabase
     .from('listings')
     .select('url, data') // Fetch only relevant fields
@@ -58,10 +55,9 @@ export const GET: RequestHandler = async ({ locals }) => {
     return json({ error: error.message }, { status: 400 });
   }
 
-  
-  const listings = data.map(listing => ({
+  const listings = data.map((listing) => ({
     url: listing.url,
-    data: listing.data || {} // Ensure data is an object, not null
+    data: listing.data || {}, // Ensure data is an object, not null
   }));
 
   return json({ success: true, listings });
@@ -75,16 +71,11 @@ export const DELETE: RequestHandler = async ({ request, locals }) => {
 
   const { url } = await request.json();
 
-  if (!url || typeof url !== "string" || url.trim() === "") {
-    return json({ error: "URL is required." }, { status: 400 });
+  if (!url || typeof url !== 'string' || url.trim() === '') {
+    return json({ error: 'URL is required.' }, { status: 400 });
   }
 
-
-  const { error } = await supabase
-    .from('listings')
-    .delete()
-    .eq('user_id', user.id)
-    .eq('url', url);
+  const { error } = await supabase.from('listings').delete().eq('user_id', user.id).eq('url', url);
 
   if (error) {
     return json({ error: error.message }, { status: 400 });

@@ -12,7 +12,6 @@
       console.error(error);
     }
   };
-
 </script>
 
 <svelte:head>
