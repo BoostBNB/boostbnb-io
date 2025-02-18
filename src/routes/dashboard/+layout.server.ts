@@ -3,19 +3,15 @@ import type { LayoutServerLoad } from './$types';
 export const load: LayoutServerLoad = async ({ locals }) => {
   const { user } = locals.session || {};
   if (!user) {
-    return { listings: [] }; 
+    return { listings: [] };
   }
 
-  
-  const { data, error } = await locals.supabase
-    .from('listings')
-    .select('url, data') 
-    .eq('user_id', user.id);
+  const { data, error } = await locals.supabase.from('listings').select('url, data').eq('user_id', user.id);
 
   if (error) {
     console.error('Error fetching listings:', error.message);
     return { listings: [] };
   }
 
-  return { listings: data || [] }; 
+  return { listings: data || [] };
 };
