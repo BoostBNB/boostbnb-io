@@ -2,85 +2,76 @@ import { json } from '@sveltejs/kit';
 import { supabase } from '$lib/db/index';
 import type { RequestHandler } from './$types';
 
+// ✅ GET: Retrieve all listings for the user
 export const GET: RequestHandler = async ({ locals }) => {
   const { user } = locals.session || {};
   if (!user) {
     return json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const { data, error } = await supabase.from('user_data').select('listings').eq('user_id', user.id).single();
+  const { data, error } = await supabase
+    .from('listings')
+    .select('id, url, data, time')
+    .eq('user_id', user.id)
+    .order('time', { ascending: false });
 
   if (error) {
     return json({ error: error.message }, { status: 400 });
   }
 
-  return json({ success: true, listings: data.listings });
+  return json({ success: true, listings: data });
 };
 
+// ✅ POST: Add a new listing (if it doesn’t exist)
 export const POST: RequestHandler = async ({ request, locals }) => {
   const { user } = locals.session || {};
   if (!user) {
     return json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const { new_listing } = await request.json();
+  const body = await request.json();
+  const url = body.url?.trim(); // ✅ Ensure `url` is a valid string
 
-  // Fetch the current listings
-  const { data: userData, error: fetchError } = await supabase.from('user_data').select('listings').eq('user_id', user.id).single();
-
-  if (fetchError) {
-    return json({ error: fetchError.message }, { status: 400 });
+  if (!url) {
+    return json({ error: "URL is required." }, { status: 400 });
   }
 
-  if (!userData || !Array.isArray(userData.listings)) {
-    return json({ error: 'Listings field is not an array' }, { status: 400 });
-  }
-
-  // Prevent duplicate listings
-  if (userData.listings.includes(new_listing)) {
-    return json({ error: 'This listing already exists.' }, { status: 400 });
-  }
-
-  // Append and update
-  const updatedListings = [...userData.listings, new_listing];
-
-  const { data, error } = await supabase.from('user_data').update({ listings: updatedListings }).eq('user_id', user.id).select();
+  // ✅ Try inserting a new listing, prevent duplicates (handled by UNIQUE INDEX)
+  const { data, error } = await supabase
+    .from('listings')
+    .insert([{ user_id: user.id, url, data: {} }]) // ✅ Ensure URL is valid
+    .select();
 
   if (error) {
+    if (error.code === '23505') { // Duplicate entry (violates UNIQUE constraint)
+      return json({ error: "This listing already exists." }, { status: 400 });
+    }
     return json({ error: error.message }, { status: 400 });
   }
 
   return json({ success: true, data });
 };
 
+
+// ✅ DELETE: Remove a listing by URL instead of ID
 export const DELETE: RequestHandler = async ({ request, locals }) => {
   const { user } = locals.session || {};
   if (!user) {
     return json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const { listing_to_delete } = await request.json();
+  const { url } = await request.json();
 
-  // Fetch current listings
-  const { data: userData, error: fetchError } = await supabase.from('user_data').select('listings').eq('user_id', user.id).single();
-
-  if (fetchError) {
-    return json({ error: fetchError.message }, { status: 400 });
-  }
-
-  if (!userData || !Array.isArray(userData.listings)) {
-    return json({ error: 'Listings field is not an array' }, { status: 400 });
-  }
-
-  // Filter out the listing to be deleted
-  const updatedListings = userData.listings.filter((listing) => listing !== listing_to_delete);
-
-  // Update database
-  const { data, error } = await supabase.from('user_data').update({ listings: updatedListings }).eq('user_id', user.id).select();
+  // ✅ Delete the listing by URL only if it belongs to the user
+  const { error } = await supabase
+    .from('listings')
+    .delete()
+    .eq('user_id', user.id)
+    .eq('url', url);
 
   if (error) {
     return json({ error: error.message }, { status: 400 });
   }
 
-  return json({ success: true, data });
+  return json({ success: true });
 };
