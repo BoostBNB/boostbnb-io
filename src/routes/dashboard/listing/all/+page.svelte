@@ -1,6 +1,6 @@
 <script>
-  const { data } = $props();
-  const listings = data.listings;
+  // const { data } = $props();
+  // const listings = data.listings;
 </script>
 
 <svelte:head>
