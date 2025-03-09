@@ -54,7 +54,6 @@ export const actions: Actions = {
     const result = await askChatGPT(prompt);
     console.log('Response: ', result);
 
-    
     // Save User Prompt and ChatGPT response to Database
 
     let { data: userData, error: dbError } = await supabase.from('cohost_conversations').select('chats').eq('user_id', user.id);
@@ -66,24 +65,24 @@ export const actions: Actions = {
 
     // If user is not yet registered in cohost_conversations table
     if (userData.length == 0) {
-        const { error: insErr } = await supabase.from("cohost_conversations").insert({
-            user_id: user.id,
-            chats: []
-        });
+      const { error: insErr } = await supabase.from('cohost_conversations').insert({
+        user_id: user.id,
+        chats: [],
+      });
 
-        if (insErr) {
-            console.error(insErr);
-            return { success: false, error: insErr };
-        }
+      if (insErr) {
+        console.error(insErr);
+        return { success: false, error: insErr };
+      }
 
-        const res = await supabase.from('cohost_conversations').select('chats').eq('user_id', user.id);
+      const res = await supabase.from('cohost_conversations').select('chats').eq('user_id', user.id);
 
-        if (res.error || res.data == null) {
-            console.error(res.error);
-            return { success: false, error: res.error };
-        }
+      if (res.error || res.data == null) {
+        console.error(res.error);
+        return { success: false, error: res.error };
+      }
 
-        userData = res.data;
+      userData = res.data;
     }
 
     //console.log("User Data: ", userData);
@@ -93,16 +92,16 @@ export const actions: Actions = {
     chats.push({
       user_prompt: prompt,
       chat_response: result,
-      timestamp: (new Date(Date.now())).toString(),
+      timestamp: new Date(Date.now()).toString(),
     });
 
-    console.log("Chats: ", chats);
+    console.log('Chats: ', chats);
 
-    const { error: insError } = await supabase.from("cohost_conversations").update({ chats }).eq("user_id", user.id);
+    const { error: insError } = await supabase.from('cohost_conversations').update({ chats }).eq('user_id', user.id);
 
     if (insError) {
-        console.error("Insertion Error: ", insError);
-        return { success: false, error: insError };
+      console.error('Insertion Error: ', insError);
+      return { success: false, error: insError };
     }
 
     return { success: true, result };

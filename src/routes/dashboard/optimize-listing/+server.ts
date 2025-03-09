@@ -4,11 +4,9 @@ import { supabase } from '$lib/db/index';
 
 export const POST = async ({ request, locals }: RequestEvent) => {
   try {
-    
-
     const { user } = locals.session || {};
     if (!user) {
-      console.error("Unauthorized request - No user found");
+      console.error('Unauthorized request - No user found');
       return json({ error: 'Unauthorized' }, { status: 401 });
     }
 
@@ -17,33 +15,27 @@ export const POST = async ({ request, locals }: RequestEvent) => {
     try {
       body = await request.json();
     } catch (error) {
-      console.error("Invalid JSON body:", error);
-      return json({ error: "Invalid JSON body" }, { status: 400 });
+      console.error('Invalid JSON body:', error);
+      return json({ error: 'Invalid JSON body' }, { status: 400 });
     }
 
     const { url } = body;
     if (!url || typeof url !== 'string' || url.trim() === '') {
-      console.error("URL is missing or invalid");
+      console.error('URL is missing or invalid');
       return json({ error: 'URL is required.' }, { status: 400 });
     }
 
     // Fetch listing data for the given URL associated with the user
-    const { data, error } = await supabase
-      .from('listings')
-      .select('data')
-      .eq('user_id', user.id)
-      .eq('url', url)
-      .single();
+    const { data, error } = await supabase.from('listings').select('data').eq('user_id', user.id).eq('url', url).single();
 
     if (error || !data) {
-      console.error("Listing not found or error fetching:", error);
+      console.error('Listing not found or error fetching:', error);
       return json({ error: 'Listing not found.' }, { status: 404 });
     }
 
-    
-    
     // Wait for ChatGPT response before returning JSON
-    const aiResponse = await askChatGPT(`You are an Airbnb listing optimization expert with deep knowledge of what makes a listing 
+    const aiResponse = await askChatGPT(
+      `You are an Airbnb listing optimization expert with deep knowledge of what makes a listing 
         succeed on the Airbnb platform. I will provide you with the current listing details, including the 
         property information, pricing, photos, reviews, availability, and amenities. Your job is to craft an 
         optimized listing description, improved title ideas, recommended photo captions, and additional 
@@ -77,8 +69,8 @@ export const POST = async ({ request, locals }: RequestEvent) => {
         them strategically to build trust in the listing and highlight consistent high points or 
         address any concerns.
         9. Write Clearly & Persuasively: Use a friendly, welcoming tone. Ensure grammar is 
-        perfect, and the text flows naturally.\nbelow is the data you have to work with\n` 
-        +JSON.stringify(data)+ 
+        perfect, and the text flows naturally.\nbelow is the data you have to work with\n` +
+        JSON.stringify(data) +
         `\n\nYour Task:
         1. Provide three optimized, attention-grabbing titles.
         2. Present an improved, cohesive, and engaging description that integrates the property’s 
@@ -99,13 +91,12 @@ export const POST = async ({ request, locals }: RequestEvent) => {
         ● Any Additional Tips (optional)
         Be sure the rewritten content is entirely original while retaining critical factual details of the 
         property (e.g., location, bed count). Write concisely and persuasively so the listing can rank 
-        higher in Airbnb searches and convert more viewers into bookers.`
+        higher in Airbnb searches and convert more viewers into bookers.`,
     );
-    
+
     return json({ success: true, Optimisation: aiResponse });
-  
   } catch (error) {
-    console.error("Unexpected error in optimizer:", error);
-    return json({ error: "Internal Server Error" }, { status: 500 });
+    console.error('Unexpected error in optimizer:', error);
+    return json({ error: 'Internal Server Error' }, { status: 500 });
   }
 };
