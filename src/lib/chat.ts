@@ -1,8 +1,8 @@
 import OpenAI from 'openai';
 
 const openai = new OpenAI({
-  apiKey:
-    });
+  apiKey:process.env.OPENAI_API_KEY
+  });
 
 export async function askChatGPT(prompt: string): Promise<string> {
   try {
