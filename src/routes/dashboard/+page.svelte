@@ -12,6 +12,8 @@
       console.error(error);
     }
   };
+
+  
 </script>
 
 <svelte:head>
@@ -22,3 +24,4 @@
   <Header disp={data.session?.user.email ?? 'U'} {logout} />
   <Stats />
 </div>
+
