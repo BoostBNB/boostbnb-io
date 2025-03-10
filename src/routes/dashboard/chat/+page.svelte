@@ -93,8 +93,12 @@
           {#if message.role === 'user'}
             <div class="chat chat-end">
               <div class="avatar chat-image">
-                <div class="w-10 rounded-full bg-neutral text-neutral-content">
-                  <span class="size-full text-center text-xl">{data?.session?.user?.email?.[0].toUpperCase() ?? 'U'}</span>
+                <div class="w-10 rounded-full">
+                  <div class="relative size-full bg-neutral text-neutral-content">
+                    <span class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-xl leading-none"
+                      >{data?.session?.user?.email?.[0].toUpperCase() ?? 'U'}</span
+                    >
+                  </div>
                 </div>
               </div>
               <div class="chat-header opacity-50">
