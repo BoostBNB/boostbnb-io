@@ -51,20 +51,21 @@ export const actions: Actions = {
 
     //console.log('Prompt: ', structuredPrompt);
 
-    const result = await askChatGPT(prompt);
+    const result = await askChatGPT(structuredPrompt);
     console.log('Response: ', result);
 
     // Save User Prompt and ChatGPT response to Database
 
-    let { data: userData, error: dbError } = await supabase.from('cohost_conversations').select('chats').eq('user_id', user.id);
+    const { data: userDataOrNull, error: dbError } = await supabase.from('cohost_conversations').select('chats').eq('user_id', user.id);
+    let userData = userDataOrNull;
 
-    if (dbError || userData == null) {
+    if (dbError || userDataOrNull == null) {
       console.error('DB Error: ', dbError);
       return { success: false, error: dbError };
     }
 
     // If user is not yet registered in cohost_conversations table
-    if (userData.length == 0) {
+    if (userData?.length == 0 || userData == null) {
       const { error: insErr } = await supabase.from('cohost_conversations').insert({
         user_id: user.id,
         chats: [],
@@ -87,7 +88,7 @@ export const actions: Actions = {
 
     //console.log("User Data: ", userData);
 
-    let chats = [...userData[0].chats];
+    const chats = [...userData[0].chats];
 
     chats.push({
       user_prompt: prompt,
