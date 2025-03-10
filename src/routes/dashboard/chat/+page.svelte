@@ -46,7 +46,7 @@
     // Clear input
     message = '';
 
-    // @ts-ignore
+    // @ts-expect-error "update is cast as type any"
     return async ({ update }) => {
       await update();
 
